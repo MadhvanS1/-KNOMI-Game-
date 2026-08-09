@@ -1,6 +1,6 @@
 import React from 'react';
-import { GuestFullMenu } from '../../components/game/GuestFullMenu';
+import { OfficialGuestMenuContainer } from '../../components/game/OfficialGuestMenuContainer';
 
 export const SoloPage: React.FC = () => {
-  return <GuestFullMenu />;
+  return <OfficialGuestMenuContainer />;
 };
