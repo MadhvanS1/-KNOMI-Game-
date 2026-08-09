@@ -56,8 +56,7 @@ export const MoodMenusPage: React.FC = () => {
   const { setResult } = useResultStore();
 
   const handleSelectMood = (theme: MoodTheme) => {
-    const dishes = DISHES.slice(0, 5);
-    const scoreResult = calculateSoloScore(dishes);
+    const scoreResult = calculateSoloScore(DISHES.slice(0, 5));
 
     const traits = [
       `🌙 Active Mood Drop: ${theme.title}`,

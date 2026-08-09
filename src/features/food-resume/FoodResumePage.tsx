@@ -74,7 +74,7 @@ export const FoodResumePage: React.FC = () => {
           "{personality.tagline}"
         </p>
 
-        {/* Dimension Metrics */}
+        {/* Dimension Metrics Grid */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: '1fr 1fr',
