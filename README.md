@@ -4,14 +4,15 @@
 [![GitHub Repository](https://img.shields.io/badge/GitHub-MadhvanS1%2F--KNOMI--Game---black?style=flat&logo=github)](https://github.com/MadhvanS1/-KNOMI-Game-)
 [![Live Web App](https://img.shields.io/badge/Live-GitHub%20Pages-brightgreen?style=flat&logo=googlechrome)](https://madhvans1.github.io/-KNOMI-Game-/)
 [![Tech Stack](https://img.shields.io/badge/Tech-React%2019%20%7C%20TypeScript%20%7C%20Vite%207%20%7C%20Zustand-blue?style=flat)](docs/tech_stack.md)
-[![All 16 Modes](https://img.shields.io/badge/All%2016%20Modes-100%25%20Completed-success?style=flat)](docs/BUILD_STEPS.md)
+[![All 16 Modes Audited](https://img.shields.io/badge/All%2016%20Modes-100%25%20Audited%20%26%20Perfected-success?style=flat)](docs/MODES_AUDIT_PLAN.md)
 
 ---
 
-## 🌐 Live Links
+## 🌐 Live Production Links
 
 - **🌐 Live Production Application:** [https://madhvans1.github.io/-KNOMI-Game-/](https://madhvans1.github.io/-KNOMI-Game-/)
 - **🐙 Source Code Repository:** [https://github.com/MadhvanS1/-KNOMI-Game-](https://github.com/MadhvanS1/-KNOMI-Game-)
+- **📍 Mode Perfection Roadmap:** [`docs/MODES_AUDIT_PLAN.md`](docs/MODES_AUDIT_PLAN.md)
 - **📍 Implementation Progress Tracker:** [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md)
 
 ---
@@ -27,31 +28,33 @@ Instead of traditional, low-conversion B2B cold calling:
 
 ---
 
-## 🎮 All 16 Game Modes Breakdown (100% Live)
+## 🎮 All 16 Game Modes & 5-Phase Audit Breakdown (100% Live)
 
-### 🟢 Phase 1: Core Launch MVP Modes (Completed & Live)
+### 🟢 Phase 1 Audit: Core Launch MVP Modes (100% Perfected)
 1. 🧠 **Solo: Read My Food Soul** — Pick 5-7 dishes → 10s suspense loading animation → Personality Reveal Card + Trait Cards + Prediction.
-2. 💀 **Challenge: Break KNOMI** — Try to order the opposite of your true taste to fool the algorithm (3% win rate).
-3. 💕 **Couple: Compatibility Test** — Test whether your relationship can survive a restaurant menu.
-4. ⚔️ **This or That: Food Dilemmas** — 15 rapid binary choice rounds with instant public percentage benchmarks.
-5. 🔥 **The Roast: Get Roasted** — Savage, Gen Z-style roast cards with custom dish callouts.
+2. 💀 **Challenge: Break KNOMI** — Real-time `SUSPICION: 35%` meter, hover/hesitation tracking, anti-fooling algorithms (3% win rate).
+3. 💕 **Couple: Compatibility Test** — 4-digit partner pairing code `#4819`, shared dish calculation, relationship compatibility %.
+4. ⚔️ **This or That: Food Dilemmas** — 15 rapid binary choice rounds with animated percentage fills and public benchmark stats.
 
-### ⚡ Phase 2: Expansion & Fast-Paced Modes (Completed & Live)
-6. ⚡ **Speed Round ("Your Gut Doesn't Lie")** — 30s blitz timer analyzing who you pretend to be vs. who you actually are.
-7. 🚩 **Red Flags / Green Flags** — Ordering habits categorized into a viral dating profile report card (`🟢` & `🚩`).
-8. 👥 **Roast Squad** — Group QR room ranking from "Least Basic" to "Most Basic".
+### ⚡ Phase 2 Audit: Viral Social & Fast-Paced Modes (100% Perfected)
+5. 🔥 **The Roast: Get Roasted** — Mild vs Savage severity toggle, critical roast badge 💀, custom dish burn callouts, 1-tap clipboard share.
+6. ⚡ **Speed Round: Your Gut Doesn't Lie** — 30s pulsing timer HUD, instant CRAVE/PASS button feedback, raw gut vs curated persona rating.
+7. 🚩 **Red Flags / Green Flags** — Interactive toxic rating meter, 🟢 Green Flags vs 🚩 Red Flags dining habit checklists.
 
-### 🎭 Phase 3: Psychological High-Stakes Modes (Completed & Live)
-9. 🎭 **The Liar's Table (*Liar Game*)** — Secret roles, 1 hidden bluff dish, 60s interrogation → group voting.
-10. ☠️ **Food Russian Roulette (*Squid Game*)** — 5 rounds, 5-second timers, 1 Poison Trap → 1% Survivor Gold Card.
-11. 🎰 **Kakegurui Feast (*Kakegurui*)** — 1v1 betting duel wagering Food Reputation Points (FRP) chips.
-12. 🐍 **Split or Steal (*Tomodachi Game*)** — 2 friends order together: Secret [SHARE] vs [STEAL] vote.
-13. 👁️ **Mind-Reader Duel (*Death Note*)** — Deduce exact orders strictly from anonymized scroll & hover telemetry.
-14. 🕵️ **The Traitor (*Among Us*)** — 4–8 players, 1 Saboteur subtly altering the group's spice/comfort average.
+### 🎭 Phase 3 Audit: Group & Social Competition Modes (100% Perfected)
+8. 👥 **Roast Squad: Group Rankings** — 6-digit room code generator `#849201`, squad basic taste leaderboards from "Least Basic" to "Most Basic".
+9. 🎭 **The Liar's Table (*Liar Game*)** — Secret role assignment card 🤫, hidden bluff dish interrogation, group voting interrogation screen.
+10. ☠️ **Food Russian Roulette (*Squid Game*)** — 5-round countdown timers (5s per round), 20% poison trap distribution, 1% survivor gold card reveal.
 
-### 🏆 Phase 4: Retention Engine Modes (Completed & Live)
-15. 🌙 **Themed Mood Menus** — Contextual menu drops (*Monsoon Comfort, 2 AM Craving, Broke Student ₹200 limit*).
-16. 🏆 **The Food Resume (`knomi.in/me/username`)** — Permanent vanity bio profile link with stats, badges, and compatibility scores.
+### 🎰 Phase 4 Audit: High-Stakes Psychological Modes (100% Perfected)
+11. 🎰 **Kakegurui Feast (*Kakegurui*)** — FRP Food Reputation Points chip wager selector `50 / 100 / 250 FRP`, 1v1 flavor prediction betting.
+12. 🐍 **Split or Steal (*Tomodachi Game*)** — Secret `[SHARE]` vs `[STEAL]` voting cards, payoff matrix outcome (*Soulmates vs Theft vs Mutual Destruction*).
+13. 👁️ **Mind-Reader Duel (*Death Note*)** — Anonymized hover & scroll telemetry log view, order deduction prediction, 96.8% accuracy rating.
+
+### 🏆 Phase 5 Audit: Traitor & Long-Term Retention Modes (100% Perfected)
+14. 🕵️ **The Traitor (*Among Us*)** — Secret Saboteur role reveal 🤫, squad flavor impact modifier, group voting interrogation.
+15. 🌙 **Themed Mood Menus** — Contextual drops (*Monsoon Comfort, 2 AM Craving, Broke Student ₹200 limit*), emotional dopamine state score.
+16. 🏆 **The Food Resume (`knomi.in/me/username`)** — Permanent vanity bio profile link, stat badge grid, 1-tap clipboard link copy, radar chart integration.
 
 ---
 
@@ -61,7 +64,8 @@ All documentation is maintained side-by-side inside the [`docs/`](docs/) directo
 
 | Document | Description |
 |---|---|
-| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker & Roadmap:** Real-time step progress from Step 1 to Step 12. |
+| 📄 [`docs/MODES_AUDIT_PLAN.md`](docs/MODES_AUDIT_PLAN.md) | **5-Phase Mode Audit Roadmap:** Comprehensive audit status for all 16 modes. |
+| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker:** Real-time step progress from Step 1 to Step 12. |
 | 📄 [`docs/requirements.md`](docs/requirements.md) | **Product Requirements:** Functional specs, menu structure, 6-dimension scoring rules. |
 | 📄 [`docs/tech_stack.md`](docs/tech_stack.md) | **Tech Stack Rationale:** React 19 + Vite 7 + TypeScript + Zustand + CSS Modules. |
 | 📄 [`docs/design.md`](docs/design.md) | **Design System:** KNOMI warm luxury tokens (`#150C0C`, `#D39858`), 8 personality color palettes. |
