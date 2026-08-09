@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Header } from '../../components/common/Header';
 import { CategoryTabs } from '../../components/game/CategoryTabs';
-import { DishCard } from '../../components/game/DishCard';
+import { PremiumV3MenuCard } from '../../components/game/PremiumV3MenuCard';
 import { PlateBar } from '../../components/game/PlateBar';
 import { DISHES } from '../../data/dishes';
 import type { DishCategory } from '../../types/dish';
@@ -33,7 +33,7 @@ export const SoloPage: React.FC = () => {
   };
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', paddingBottom: '100px' }}>
+    <div style={{ width: '100%', minHeight: '100vh', paddingBottom: '110px' }}>
       <Header showBack title={activeMode === 'roast' ? '💀 Roast Mode' : '🧠 Solo Mode'} />
 
       {/* Subheader Title */}
@@ -42,7 +42,7 @@ export const SoloPage: React.FC = () => {
           {activeMode === 'roast' ? 'Pick the dishes you order most' : 'Pick 5-7 dishes that speak to you'}
         </h2>
         <p style={{ fontSize: '13px', color: 'var(--knomi-text-secondary)' }}>
-          Select items across categories to decode your food DNA.
+          KNOMI Premium Menu Engine • Select 5 to 7 dishes across categories
         </p>
       </div>
 
@@ -52,15 +52,15 @@ export const SoloPage: React.FC = () => {
         onSelectCategory={(cat) => setActiveCategory(cat)}
       />
 
-      {/* Dish Grid/List */}
+      {/* Premium V3 Stacked Menu Cards */}
       <div style={{
         padding: '16px 20px',
         display: 'flex',
         flexDirection: 'column',
-        gap: '12px'
+        gap: '20px'
       }}>
         {categoryDishes.map(dish => (
-          <DishCard
+          <PremiumV3MenuCard
             key={dish.id}
             dish={dish}
             isSelected={selectedDishIds.includes(dish.id)}
