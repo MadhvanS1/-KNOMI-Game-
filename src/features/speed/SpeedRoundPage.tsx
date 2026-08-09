@@ -2,185 +2,185 @@ import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from '../../components/common/Header';
 import { DISHES } from '../../data/dishes';
-import { useSelectionStore } from '../../stores/useSelectionStore';
+import type { Dish } from '../../types/dish';
 import { useGameStore } from '../../stores/useGameStore';
 import { useResultStore } from '../../stores/useResultStore';
 import { calculateSoloScore } from '../../engine/scoringEngine';
-import type { Dish } from '../../types/dish';
-import { HeartPulse } from 'lucide-react';
+import { Timer, Heart, X } from 'lucide-react';
 
 export const SpeedRoundPage: React.FC = () => {
   const [timeLeft, setTimeLeft] = useState(30);
   const [currentIdx, setCurrentIdx] = useState(0);
-  const [speedPicks, setSpeedPicks] = useState<Dish[]>([]);
+  const [cravedDishes, setCravedDishes] = useState<Dish[]>([]);
+  const [passedDishes, setPassedDishes] = useState<Dish[]>([]);
 
   const { setStep } = useGameStore();
   const { setResult } = useResultStore();
-  const { getSelectedDishes } = useSelectionStore();
 
-  const dish = DISHES[currentIdx];
+  const currentDish = DISHES[currentIdx] || DISHES[0];
 
-  // 30-Second Blitz Timer
   useEffect(() => {
     if (timeLeft <= 0) {
-      handleComplete(speedPicks);
+      handleFinish();
       return;
     }
-
     const timer = setInterval(() => {
       setTimeLeft(prev => prev - 1);
     }, 1000);
-
     return () => clearInterval(timer);
-  }, [timeLeft, speedPicks]);
+  }, [timeLeft]);
 
-  const handlePick = (dishToPick: Dish, accept: boolean) => {
-    let updated = speedPicks;
-    if (accept) {
-      updated = [...speedPicks, dishToPick];
-      setSpeedPicks(updated);
-    }
+  const handleCrave = () => {
+    const updated = [...cravedDishes, currentDish];
+    setCravedDishes(updated);
+    nextDish(updated);
+  };
 
+  const handlePass = () => {
+    const updated = [...passedDishes, currentDish];
+    setPassedDishes(updated);
+    nextDish(cravedDishes);
+  };
+
+  const nextDish = (picks: Dish[]) => {
     if (currentIdx + 1 < DISHES.length) {
       setCurrentIdx(prev => prev + 1);
     } else {
-      handleComplete(updated);
+      handleFinish(picks);
     }
   };
 
-  const handleComplete = (finalPicks: Dish[]) => {
-    const soloDishes = getSelectedDishes();
-    const scoreResult = calculateSoloScore(finalPicks.length > 0 ? finalPicks : soloDishes);
+  const handleFinish = (finalPicks = cravedDishes) => {
+    const picks = finalPicks.length > 0 ? finalPicks : DISHES.slice(0, 5);
+    const scoreResult = calculateSoloScore(picks);
 
     const traits = [
-      `Curated Person: Picked ${soloDishes.length > 0 ? soloDishes[0].name : 'Butter Chicken'} when relaxed.`,
-      `Actual Gut Instinct: Grabbed ${finalPicks.length > 0 ? finalPicks[0].name : 'Loaded Nachos'} under 30s pressure.`,
-      `Subconscious Reality: You pretend to be refined, but your gut wants pure comfort.`
+      `⚡ SPEED ROUND BLITZ COMPLETED (${30 - timeLeft}s)`,
+      `🧠 Gut Instinct vs Curated Persona: 94% Raw Gut Instinct`,
+      `🔥 Decision Rate: ${(finalPicks.length / (30 - timeLeft || 1)).toFixed(1)} decisions per second`
     ];
 
     setResult(scoreResult.personality, scoreResult.averagedDimensions, traits, null);
     setStep('analyzing');
   };
 
+  const isLowTime = timeLeft <= 5;
+
   return (
-    <div style={{ width: '100%', minHeight: '100vh', paddingBottom: '32px' }}>
-      <Header showBack title="⚡ Speed Round: Gut Check" />
+    <div style={{ width: '100%', minHeight: '100vh', padding: '0 20px 40px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Header showBack title="⚡ Speed Round" />
 
-      {/* Timer Bar */}
-      <div style={{
-        padding: '16px 20px',
-        backgroundColor: timeLeft < 10 ? 'rgba(220, 38, 38, 0.2)' : 'var(--knomi-surface-card)',
-        borderBottom: '1px solid var(--knomi-border-strong)',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <HeartPulse size={22} color={timeLeft < 10 ? '#DC2626' : 'var(--knomi-whiskey-sour)'} />
-          <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--knomi-text-primary)' }}>
-            INSTINCT TIMER
-          </span>
-        </div>
-
-        <div style={{
-          fontSize: '22px',
-          fontFamily: 'var(--font-family-display)',
-          fontWeight: 700,
-          color: timeLeft < 10 ? '#DC2626' : 'var(--knomi-whiskey-sour)'
-        }}>
-          {timeLeft}s
-        </div>
+      {/* Timer HUD */}
+      <div style={{ textAlign: 'center', marginTop: '10px' }}>
+        <motion.div
+          animate={{ scale: isLowTime ? [1, 1.1, 1] : 1 }}
+          transition={{ repeat: isLowTime ? Infinity : 0, duration: 0.5 }}
+          style={{
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: '8px',
+            padding: '8px 18px',
+            borderRadius: 'var(--radius-full)',
+            backgroundColor: isLowTime ? 'rgba(255, 68, 68, 0.2)' : 'rgba(211, 152, 88, 0.15)',
+            border: isLowTime ? '1px solid #FF4444' : '1px solid var(--knomi-border-strong)',
+            color: isLowTime ? '#FF4444' : 'var(--knomi-whiskey-sour)',
+            fontSize: '16px',
+            fontWeight: 800
+          }}
+        >
+          <Timer size={18} />
+          <span>00:{timeLeft < 10 ? `0${timeLeft}` : timeLeft}</span>
+        </motion.div>
       </div>
 
-      {/* Subheader */}
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <h2 style={{ fontSize: '20px', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
-          Who you pretend to be vs. Who you ACTUALLY are
-        </h2>
-        <p style={{ fontSize: '13px', color: 'var(--knomi-text-secondary)' }}>
-          30 seconds on the clock. Accept or pass instantly.
-        </p>
-      </div>
-
-      {/* Speed Card */}
-      <div style={{ padding: '0 20px' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={dish.id}
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.9 }}
-            transition={{ duration: 0.2 }}
+      {/* Dish Flash Card */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={currentDish.id}
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          exit={{ opacity: 0, scale: 0.9 }}
+          transition={{ duration: 0.2 }}
+          style={{
+            marginTop: '20px',
+            padding: '24px 20px',
+            borderRadius: 'var(--radius-xl)',
+            backgroundColor: 'var(--knomi-surface-card)',
+            border: '1px solid var(--knomi-border-strong)',
+            boxShadow: 'var(--shadow-card)',
+            textAlign: 'center'
+          }}
+        >
+          <img
+            src={currentDish.imageUrl}
+            alt={currentDish.name}
             style={{
-              width: '100%',
-              borderRadius: 'var(--radius-xl)',
-              backgroundColor: 'var(--knomi-surface-card)',
-              border: '1px solid var(--knomi-border-strong)',
-              boxShadow: 'var(--shadow-card)',
-              padding: '20px',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              textAlign: 'center'
+              maxHeight: '200px',
+              maxWidth: '85%',
+              objectFit: 'contain',
+              marginBottom: '16px',
+              filter: 'drop-shadow(0 12px 24px rgba(0,0,0,0.6))'
             }}
-          >
-            <img
-              src={dish.imageUrl}
-              alt={dish.name}
-              style={{
-                width: '100%',
-                height: '200px',
-                objectFit: 'cover',
-                borderRadius: 'var(--radius-lg)',
-                marginBottom: '16px'
-              }}
-            />
+          />
 
-            <h3 style={{ fontSize: '22px', color: 'var(--knomi-text-primary)', marginBottom: '6px' }}>
-              {dish.name}
-            </h3>
-            <span style={{ fontSize: '16px', fontWeight: 700, color: 'var(--knomi-whiskey-sour)', marginBottom: '20px' }}>
-              ₹{dish.price}
-            </span>
+          <h2 style={{ fontSize: '22px', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
+            {currentDish.name}
+          </h2>
+          <p style={{ fontSize: '13px', color: 'var(--knomi-text-secondary)', marginBottom: '12px' }}>
+            {currentDish.description}
+          </p>
+          <span style={{ fontSize: '18px', fontWeight: 700, color: 'var(--knomi-whiskey-sour)' }}>
+            ₹{currentDish.price}
+          </span>
+        </motion.div>
+      </AnimatePresence>
 
-            {/* Accept / Pass Buttons */}
-            <div style={{ width: '100%', display: 'flex', gap: '12px' }}>
-              <button
-                onClick={() => handlePick(dish, false)}
-                style={{
-                  flex: 1,
-                  padding: '14px',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: 'rgba(255,255,255,0.1)',
-                  color: 'var(--knomi-text-secondary)',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                PASS ❌
-              </button>
+      {/* Action Buttons: PASS vs CRAVE */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px', marginTop: '20px' }}>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={handlePass}
+          style={{
+            padding: '16px',
+            borderRadius: 'var(--radius-full)',
+            backgroundColor: 'rgba(255, 68, 68, 0.15)',
+            border: '2px solid #FF4444',
+            color: '#FF4444',
+            fontWeight: 800,
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            cursor: 'pointer'
+          }}
+        >
+          <X size={20} strokeWidth={3} />
+          <span>PASS</span>
+        </motion.button>
 
-              <button
-                onClick={() => handlePick(dish, true)}
-                style={{
-                  flex: 1,
-                  padding: '14px',
-                  borderRadius: 'var(--radius-md)',
-                  backgroundColor: 'var(--knomi-whiskey-sour)',
-                  color: '#150C0C',
-                  fontWeight: 700,
-                  fontSize: '15px',
-                  border: 'none',
-                  cursor: 'pointer'
-                }}
-              >
-                CRAVE IT! ⚡
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+        <motion.button
+          whileTap={{ scale: 0.95 }}
+          onClick={handleCrave}
+          style={{
+            padding: '16px',
+            borderRadius: 'var(--radius-full)',
+            backgroundColor: 'var(--knomi-whiskey-sour)',
+            border: 'none',
+            color: '#150C0C',
+            fontWeight: 800,
+            fontSize: '16px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: '8px',
+            cursor: 'pointer',
+            boxShadow: 'var(--shadow-glow)'
+          }}
+        >
+          <Heart size={20} fill="#150C0C" />
+          <span>CRAVE</span>
+        </motion.button>
       </div>
     </div>
   );
