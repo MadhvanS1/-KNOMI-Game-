@@ -147,9 +147,18 @@ export const OfficialGuestMenuContainer: React.FC = () => {
       onTouchEnd={handleTouchEnd}
       onWheel={handleWheel}
       className={themeStyles.appContainer}
-      style={{ touchAction: 'none', position: 'relative', overflow: 'hidden', height: '100vh', width: '100vw' }}
+      style={{
+        touchAction: 'none',
+        position: 'relative',
+        overflow: 'hidden',
+        height: '100vh',
+        width: '100%',
+        maxWidth: '440px',
+        margin: '0 auto',
+        boxSizing: 'border-box'
+      }}
     >
-      {/* LAYER 1: Canvas */}
+      {/* LAYER 1: Canvas Base */}
       <div
         className={layerStyles.layerCanvas}
         style={{
@@ -158,7 +167,7 @@ export const OfficialGuestMenuContainer: React.FC = () => {
         }}
       />
 
-      {/* LAYER 2: Atmosphere Overlays */}
+      {/* LAYER 2: Atmosphere */}
       <div className={layerStyles.layerAtmosphere}>
         <div style={{
           position: 'absolute',
@@ -172,7 +181,7 @@ export const OfficialGuestMenuContainer: React.FC = () => {
       </div>
 
       {/* LAYER 3: Content */}
-      <div className={layerStyles.layerContent} style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
+      <div className={layerStyles.layerContent} style={{ display: 'flex', flexDirection: 'column', height: '100%', width: '100%' }}>
         {/* Header HUD */}
         <div style={{
           position: 'relative',
@@ -183,7 +192,8 @@ export const OfficialGuestMenuContainer: React.FC = () => {
           justifyContent: 'space-between',
           borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
           backgroundColor: 'rgba(21, 12, 12, 0.85)',
-          backdropFilter: 'blur(10px)'
+          backdropFilter: 'blur(10px)',
+          width: '100%'
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Sparkles size={18} color="var(--knomi-whiskey-sour)" />
@@ -206,7 +216,8 @@ export const OfficialGuestMenuContainer: React.FC = () => {
           overflowX: 'auto',
           padding: '10px 20px',
           backgroundColor: 'rgba(21, 12, 12, 0.6)',
-          borderBottom: '1px solid rgba(255, 255, 255, 0.05)'
+          borderBottom: '1px solid rgba(255, 255, 255, 0.05)',
+          width: '100%'
         }}>
           {CATEGORIES.map(cat => {
             const isActive = activeCategory === cat.id;
@@ -236,8 +247,8 @@ export const OfficialGuestMenuContainer: React.FC = () => {
           })}
         </div>
 
-        {/* Full-bleed Reels Dish Card */}
-        <div style={{ flex: 1, position: 'relative', overflow: 'hidden' }}>
+        {/* Full-bleed Reels Dish Card Container */}
+        <div style={{ flex: 1, position: 'relative', overflow: 'hidden', width: '100%' }}>
           <AnimatePresence mode="popLayout" custom={direction}>
             <motion.div
               key={currentDish.id}
@@ -248,11 +259,15 @@ export const OfficialGuestMenuContainer: React.FC = () => {
               exit="exit"
               style={{
                 position: 'absolute',
-                inset: 0,
+                top: 0,
+                bottom: 0,
+                left: 0,
+                right: 0,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-between',
-                paddingBottom: '90px'
+                paddingBottom: '90px',
+                width: '100%'
               }}
             >
               {/* Floating Food Image (55% Height) */}
@@ -261,7 +276,8 @@ export const OfficialGuestMenuContainer: React.FC = () => {
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
-                padding: '20px'
+                padding: '20px',
+                width: '100%'
               }}>
                 <motion.img
                   src={currentDish.imageUrl}
