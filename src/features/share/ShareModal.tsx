@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import html2canvas from 'html2canvas';
-import { Download, Share2, Copy, X, Check, MessageCircle, Instagram } from 'lucide-react';
-import { PersonalityProfile } from '../../types/personality';
+import { Download, Share2, Copy, X, Check } from 'lucide-react';
+import type { PersonalityProfile } from '../../types/personality';
 import { Button } from '../../components/common/Button';
 
 interface ShareModalProps {

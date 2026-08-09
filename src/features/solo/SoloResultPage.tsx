@@ -9,7 +9,7 @@ import { ShareModal } from '../share/ShareModal';
 import { Button } from '../../components/common/Button';
 
 export const SoloResultPage: React.FC = () => {
-  const { personality, traits, predictionText } = useResultStore();
+  const { personality, traits } = useResultStore();
   const { resetGame, setStep } = useGameStore();
   const { resetSelections } = useSelectionStore();
   const [showShareModal, setShowShareModal] = useState(false);
@@ -134,7 +134,7 @@ export const SoloResultPage: React.FC = () => {
           padding: '16px',
           borderRadius: 'var(--radius-md)',
           backgroundColor: 'rgba(211, 152, 88, 0.1)',
-          border: '1px border-strong',
+          border: '1px solid var(--knomi-border-strong)',
           textAlign: 'center',
           marginBottom: '24px'
         }}
@@ -146,7 +146,7 @@ export const SoloResultPage: React.FC = () => {
           </span>
         </div>
         <p style={{ fontSize: '14px', fontWeight: 600, color: 'var(--knomi-text-primary)' }}>
-          {predictionText}
+          {personality.predictionText}
         </p>
       </motion.div>
 

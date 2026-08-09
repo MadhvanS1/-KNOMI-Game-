@@ -6,7 +6,7 @@ import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useGameStore } from '../../stores/useGameStore';
 import { useResultStore } from '../../stores/useResultStore';
 import { calculateSoloScore } from '../../engine/scoringEngine';
-import { Dish } from '../../types/dish';
+import type { Dish } from '../../types/dish';
 
 export const ThisOrThatPage: React.FC = () => {
   const [currentRound, setCurrentRound] = useState(0);
@@ -21,7 +21,7 @@ export const ThisOrThatPage: React.FC = () => {
   const progressPercent = Math.round(((currentRound + 1) / THIS_OR_THAT_PAIRS.length) * 100);
 
   const handlePick = (option: 'A' | 'B', dish: Dish) => {
-    if (selectedChoice !== null) return; // Prevent double taps
+    if (selectedChoice !== null) return;
 
     setSelectedChoice(option);
     setThisOrThatChoice(pair.id, option === 'A' ? 'optionA' : 'optionB');
@@ -33,7 +33,6 @@ export const ThisOrThatPage: React.FC = () => {
         setCurrentRound(prev => prev + 1);
         setSelectedChoice(null);
       } else {
-        // Complete 15 rounds -> Calculate results
         const scoreResult = calculateSoloScore(updatedDishes);
         setResult(scoreResult.personality, scoreResult.averagedDimensions, scoreResult.traits, null);
         setStep('analyzing');

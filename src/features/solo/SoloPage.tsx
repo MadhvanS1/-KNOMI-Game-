@@ -4,7 +4,7 @@ import { CategoryTabs } from '../../components/game/CategoryTabs';
 import { DishCard } from '../../components/game/DishCard';
 import { PlateBar } from '../../components/game/PlateBar';
 import { DISHES } from '../../data/dishes';
-import { DishCategory } from '../../types/dish';
+import type { DishCategory } from '../../types/dish';
 import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useGameStore } from '../../stores/useGameStore';
 import { useResultStore } from '../../stores/useResultStore';

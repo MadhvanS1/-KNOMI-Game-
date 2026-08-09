@@ -1,7 +1,7 @@
 import { create } from 'zustand';
-import { SeverityLevel } from '../types/roast';
+import type { SeverityLevel } from '../types/roast';
 import { DISHES } from '../data/dishes';
-import { Dish } from '../types/dish';
+import type { Dish } from '../types/dish';
 
 interface SelectionState {
   selectedDishIds: string[];

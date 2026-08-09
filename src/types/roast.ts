@@ -1,4 +1,4 @@
-import { PersonalityId } from './personality';
+import type { PersonalityId } from './personality';
 
 export type SeverityLevel = 'mild' | 'savage';
 

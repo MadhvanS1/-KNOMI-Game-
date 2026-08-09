@@ -1,10 +1,10 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Zap, Flame, Users, ArrowRight } from 'lucide-react';
+import { Sparkles, Users, ArrowRight } from 'lucide-react';
 import { useGameStore } from '../../stores/useGameStore';
 import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useResultStore } from '../../stores/useResultStore';
-import { GameMode } from '../../types/game';
+import type { GameMode } from '../../types/game';
 
 export const LandingPage: React.FC = () => {
   const { setMode, setStep } = useGameStore();
