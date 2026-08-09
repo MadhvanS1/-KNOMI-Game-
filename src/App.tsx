@@ -3,6 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import { useGameStore } from './stores/useGameStore';
 import { LandingPage } from './features/landing/LandingPage';
 import { SoloPage } from './features/solo/SoloPage';
+import { ChallengePage } from './features/challenge/ChallengePage';
+import { CouplePage } from './features/couple/CouplePage';
 import { SoloResultPage } from './features/solo/SoloResultPage';
 import { ThisOrThatPage } from './features/this-or-that/ThisOrThatPage';
 import { RoastResultPage } from './features/roast/RoastResultPage';
@@ -33,7 +35,19 @@ export const App: React.FC = () => {
           </motion.div>
         )}
 
-        {step === 'browsing' && (
+        {step === 'browsing' && activeMode === 'challenge' && (
+          <motion.div key="challenge" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <ChallengePage />
+          </motion.div>
+        )}
+
+        {step === 'browsing' && activeMode === 'couple' && (
+          <motion.div key="couple" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <CouplePage />
+          </motion.div>
+        )}
+
+        {step === 'browsing' && (activeMode === 'solo' || activeMode === 'roast') && (
           <motion.div key="browsing" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <SoloPage />
           </motion.div>
