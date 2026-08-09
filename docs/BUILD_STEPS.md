@@ -1,6 +1,7 @@
 # 🎯 KNOMI KNOWS YOU — BUILD STEPS & PROGRESS TRACKER
 
 > **Master Roadmap & Implementation Step Tracker**
+> **GitHub Repository:** [https://github.com/MadhvanS1/-KNOMI-Game-](https://github.com/MadhvanS1/-KNOMI-Game-)
 > **Current Status:** 🟡 **STEP 5: Core UI Components & Feature Pages (In Progress)**
 > **Target Launch:** August 27, 2026 (Constellation College Fest)
 
@@ -11,14 +12,14 @@
 ```
 [x] STEP 1 : Discovery, Business Model & Strategy Alignment (DONE)
 [x] STEP 2 : Architecture & Complete System Blueprint (DONE)
-[x] STEP 3 : Complete Documentation Suite (9 Master Specs) (DONE)
-[x] STEP 4 : Project Initialization & Workspace Setup (DONE)
+[x] STEP 3 : Complete Documentation Suite (10 Master Specs) (DONE)
+[x] STEP 4 : Project Initialization & Standalone Repo Setup (DONE)
 [▶] STEP 5 : Core UI Components & Feature Pages (IN PROGRESS)
 [ ] STEP 6 : Personality Engine & Scoring Algorithm Verification
 [ ] STEP 7 : Share Card Generator & Canvas Export Engine
 [ ] STEP 8 : PWA Configuration, Service Worker & Offline Caching
-[ ] STEP 9 : End-to-End Testing & Monorepo Integration
-[ ] STEP 10: Production Deployment (Vercel) & Git Push
+[ ] STEP 9 : End-to-End Testing & Build Verification
+[ ] STEP 10: Production Deployment (Vercel) & Final Sync
 ```
 
 ---
@@ -36,20 +37,22 @@
 - Built contradiction detection algorithm for archetype overrides (e.g. Chaos Agent).
 
 ### ✅ STEP 3: Complete Documentation Suite
-- Created 9 structured master documentation files:
-  1. `docs/requirements.md` — Functional & non-functional requirements
-  2. `docs/tech_stack.md` — Technology selection & rationale
-  3. `docs/design.md` — Design system & color tokens
-  4. `docs/ui_ux.md` — Screen-by-screen UI/UX wireframes
-  5. `docs/architecture.md` — System architecture & FSD folder structure
-  6. `docs/data_flow.md` — Data models & state transformation flows
-  7. `docs/user_flow.md` — User journey maps & viral share loops
-  8. `docs/deployment.md` — Vercel CI/CD & build instructions
-  9. `docs/hosting.md` — Zero-cost hosting infrastructure analysis
+- Created 10 structured master documentation files in `docs/`:
+  1. `docs/BUILD_STEPS.md` — Master implementation roadmap & tracker
+  2. `docs/requirements.md` — Functional & non-functional requirements
+  3. `docs/tech_stack.md` — Technology selection & rationale
+  4. `docs/design.md` — Design system & color tokens
+  5. `docs/ui_ux.md` — Screen-by-screen UI/UX wireframes
+  6. `docs/architecture.md` — System architecture & FSD folder structure
+  7. `docs/data_flow.md` — Data models & state transformation flows
+  8. `docs/user_flow.md` — User journey maps & viral share loops
+  9. `docs/deployment.md` — Vercel CI/CD & build instructions
+  10. `docs/hosting.md` — Zero-cost hosting infrastructure analysis
 
-### ✅ STEP 4: Project Initialization & Workspace Setup
-- Initialized React 19 + TypeScript + Vite 7 application in `KNOMI Game`.
-- Installed dependencies: `zustand`, `framer-motion`, `lucide-react`, `html2canvas`, `canvas-confetti`, `vite-plugin-pwa`.
+### ✅ STEP 4: Standalone Repo Setup & GitHub Push
+- Initialized standalone Git repository at `/Users/deepaksharma/Documents/MGame/KNOMI Game/`.
+- Connected remote repository: `https://github.com/MadhvanS1/-KNOMI-Game-.git`.
+- Installed core dependencies: `zustand`, `framer-motion`, `lucide-react`, `html2canvas`, `canvas-confetti`, `vite-plugin-pwa`.
 - Created TypeScript interfaces (`types/dish.ts`, `types/personality.ts`, `types/roast.ts`, `types/game.ts`).
 - Created datasets (`data/dishes.ts`, `data/personalities.ts`, `data/roasts.ts`, `data/thisOrThatPairs.ts`).
 - Built scoring engine (`engine/scoringEngine.ts`, `engine/roastGenerator.ts`).
@@ -66,10 +69,10 @@
 - [x] Landing Page (`features/landing/LandingPage.tsx`)
 - [x] Solo & Roast Menu Browse Page (`features/solo/SoloPage.tsx`)
 - [x] Solo Result Page (`features/solo/SoloResultPage.tsx`)
-- [ ] This or That Page (`features/this-or-that/ThisOrThatPage.tsx`)
-- [ ] Roast Result Page (`features/roast/RoastResultPage.tsx`)
-- [ ] Share Modal (`features/share/ShareModal.tsx`)
-- [ ] App Main Router & Integration (`App.tsx`)
+- [x] This or That Page (`features/this-or-that/ThisOrThatPage.tsx`)
+- [x] Roast Result Page (`features/roast/RoastResultPage.tsx`)
+- [x] Share Modal (`features/share/ShareModal.tsx`)
+- [x] App Main Router & Integration (`App.tsx`)
 
 ### ⏳ STEP 6: Personality Engine Verification
 - Verify dimension averaging across all 30 dishes.
@@ -84,10 +87,10 @@
 - Configure `vite-plugin-pwa` service worker and manifest.
 - Test offline playability in browser devtools.
 
-### ⏳ STEP 9: Monorepo Integration
-- Move/link `KNOMI Game` into `KNOMI/Frontend/apps/game` workspace.
-- Update root `package.json` scripts (`dev:game`, `build:game`).
+### ⏳ STEP 9: End-to-End Build Verification
+- Verify production build outputs cleanly without warnings.
+- Validate mobile responsive viewport boundaries.
 
-### ⏳ STEP 10: GitHub Commit & Vercel Deployment
-- Commit all code to `https://github.com/Yashgarg2928/KNOMI.git`.
+### ⏳ STEP 10: Production Deployment (Vercel)
 - Configure Vercel deployment for `play.knomi.in`.
+- Final sync to GitHub repository.
