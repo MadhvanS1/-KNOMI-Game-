@@ -4,7 +4,7 @@
 [![GitHub Repository](https://img.shields.io/badge/GitHub-MadhvanS1%2F--KNOMI--Game---black?style=flat&logo=github)](https://github.com/MadhvanS1/-KNOMI-Game-)
 [![Live Web App](https://img.shields.io/badge/Live-GitHub%20Pages-brightgreen?style=flat&logo=googlechrome)](https://madhvans1.github.io/-KNOMI-Game-/)
 [![Tech Stack](https://img.shields.io/badge/Tech-React%2019%20%7C%20TypeScript%20%7C%20Vite%207%20%7C%20Zustand-blue?style=flat)](docs/tech_stack.md)
-[![Phase 1 MVP](https://img.shields.io/badge/Phase%201-100%25%20Completed-success?style=flat)](docs/BUILD_STEPS.md)
+[![Phase 1 & 2](https://img.shields.io/badge/Phase%201%20%26%202-8%2F8%20Modes%20Completed-success?style=flat)](docs/BUILD_STEPS.md)
 
 ---
 
@@ -27,21 +27,21 @@ Instead of traditional, low-conversion B2B cold calling:
 
 ---
 
-## 🎮 Game Modes (16 Total Across 4 Phases)
+## 🎮 Game Modes Breakdown (8 Live Modes Across Phase 1 & 2)
 
-### 🟢 Phase 1: Launch & Core MVP Modes (Completed & Live)
-1. 🧠 **Solo: Read My Food Soul** — Pick 5-7 dishes → 10s suspense animation → Personality Reveal Card + Trait Cards + Prediction.
+### 🟢 Phase 1: Core Launch MVP Modes (Completed & Live)
+1. 🧠 **Solo: Read My Food Soul** — Pick 5-7 dishes → 10s suspense loading animation → Personality Reveal Card + Trait Cards + Prediction.
 2. 💀 **Challenge: Break KNOMI** — Try to order the opposite of your true taste to fool the algorithm (3% win rate).
 3. 💕 **Couple: Compatibility Test** — Test whether your relationship can survive a restaurant menu.
 4. ⚔️ **This or That: Food Dilemmas** — 15 rapid binary choice rounds with instant public percentage benchmarks.
 5. 🔥 **The Roast: Get Roasted** — Savage, Gen Z-style roast cards with custom dish callouts.
 
-### ⚡ Phase 2: Expansion & Fast-Paced Modes
-6. ⚡ **Speed Round ("Your Gut Doesn't Lie")** — 30s blitz timer with accelerating heartbeat haptic feedback.
-7. 🚩 **Red Flags / Green Flags** — Ordering habits categorized into a viral dating profile report card.
+### ⚡ Phase 2: Expansion & Fast-Paced Modes (Completed & Live)
+6. ⚡ **Speed Round ("Your Gut Doesn't Lie")** — 30s blitz timer analyzing who you pretend to be vs. who you actually are.
+7. 🚩 **Red Flags / Green Flags** — Ordering habits categorized into a viral dating profile report card (`🟢` & `🚩`).
 8. 👥 **Roast Squad** — Group QR room ranking from "Least Basic" to "Most Basic".
 
-### 🎭 Phase 3: Psychological High-Stakes Modes (Anime-Inspired)
+### 🎭 Phase 3: Psychological High-Stakes Modes (Upcoming)
 9. 🎭 **The Liar's Table (*Liar Game*)** — 3–6 players, secret roles, 1 hidden bluff dish, 60s interrogation → group voting.
 10. ☠️ **Food Russian Roulette (*Squid Game / Kaiji*)** — 5 rounds, 5-second timers, hidden Poison Traps → 1% Survivor Gold Card.
 11. 🎰 **Kakegurui Feast (*Kakegurui*)** — 1v1 betting duel wagering Food Reputation Points (FRP).
@@ -61,7 +61,7 @@ All documentation is maintained side-by-side inside the [`docs/`](docs/) directo
 
 | Document | Description |
 |---|---|
-| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker & Roadmap:** Real-time step progress from Step 1 to Step 10. |
+| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker & Roadmap:** Real-time step progress from Step 1 to Step 11. |
 | 📄 [`docs/requirements.md`](docs/requirements.md) | **Product Requirements:** Functional specs, menu structure, 6-dimension scoring rules. |
 | 📄 [`docs/tech_stack.md`](docs/tech_stack.md) | **Tech Stack Rationale:** React 19 + Vite 7 + TypeScript + Zustand + CSS Modules. |
 | 📄 [`docs/design.md`](docs/design.md) | **Design System:** KNOMI warm luxury tokens (`#150C0C`, `#D39858`), 8 personality color palettes. |
@@ -89,9 +89,6 @@ npm run dev     # App runs on http://localhost:5173
 
 # Build for production
 npm run build   # Static bundle created in dist/
-
-# Preview production build
-npm run preview
 ```
 
 ---

@@ -5,6 +5,9 @@ import { LandingPage } from './features/landing/LandingPage';
 import { SoloPage } from './features/solo/SoloPage';
 import { ChallengePage } from './features/challenge/ChallengePage';
 import { CouplePage } from './features/couple/CouplePage';
+import { SpeedRoundPage } from './features/speed/SpeedRoundPage';
+import { RedFlagsPage } from './features/red-flags/RedFlagsPage';
+import { SquadPage } from './features/squad/SquadPage';
 import { SoloResultPage } from './features/solo/SoloResultPage';
 import { ThisOrThatPage } from './features/this-or-that/ThisOrThatPage';
 import { RoastResultPage } from './features/roast/RoastResultPage';
@@ -47,6 +50,18 @@ export const App: React.FC = () => {
           </motion.div>
         )}
 
+        {step === 'browsing' && activeMode === 'red-flags' && (
+          <motion.div key="red-flags" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <RedFlagsPage />
+          </motion.div>
+        )}
+
+        {step === 'browsing' && activeMode === 'squad' && (
+          <motion.div key="squad" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <SquadPage />
+          </motion.div>
+        )}
+
         {step === 'browsing' && (activeMode === 'solo' || activeMode === 'roast') && (
           <motion.div key="browsing" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <SoloPage />
@@ -56,6 +71,12 @@ export const App: React.FC = () => {
         {step === 'playing' && activeMode === 'this-or-that' && (
           <motion.div key="this-or-that" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <ThisOrThatPage />
+          </motion.div>
+        )}
+
+        {step === 'playing' && activeMode === 'speed' && (
+          <motion.div key="speed" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <SpeedRoundPage />
           </motion.div>
         )}
 
