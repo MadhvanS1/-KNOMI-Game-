@@ -1,11 +1,14 @@
 .appContainer {
-  width: 100vw;
+  width: 100%;
+  max-width: 440px;
   height: 100vh;
+  margin: 0 auto;
   overflow: hidden;
   position: relative;
   background-color: var(--theme-bg, #1a1a1a);
   color: var(--theme-text, #ffffff);
   font-family: var(--theme-font, system-ui, sans-serif);
+  box-sizing: border-box;
 }
 
 .menuContainer {
