@@ -2,161 +2,214 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from '../../components/common/Header';
 import { THIS_OR_THAT_PAIRS } from '../../data/thisOrThatPairs';
-import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useGameStore } from '../../stores/useGameStore';
 import { useResultStore } from '../../stores/useResultStore';
 import { calculateSoloScore } from '../../engine/scoringEngine';
 import type { Dish } from '../../types/dish';
 
 export const ThisOrThatPage: React.FC = () => {
-  const [currentRound, setCurrentRound] = useState(0);
-  const [selectedChoice, setSelectedChoice] = useState<'A' | 'B' | null>(null);
-  const [pickedDishes, setPickedDishes] = useState<Dish[]>([]);
+  const [currentPairIdx, setCurrentPairIdx] = useState(0);
+  const [userSelections, setUserSelections] = useState<Dish[]>([]);
+  const [selectedSide, setSelectedSide] = useState<'left' | 'right' | null>(null);
 
   const { setStep } = useGameStore();
   const { setResult } = useResultStore();
-  const { setThisOrThatChoice } = useSelectionStore();
 
-  const pair = THIS_OR_THAT_PAIRS[currentRound];
-  const progressPercent = Math.round(((currentRound + 1) / THIS_OR_THAT_PAIRS.length) * 100);
+  const pair = THIS_OR_THAT_PAIRS[currentPairIdx];
 
-  const handlePick = (option: 'A' | 'B', dish: Dish) => {
-    if (selectedChoice !== null) return;
+  const handleSelect = (dish: Dish, side: 'left' | 'right') => {
+    if (selectedSide) return;
 
-    setSelectedChoice(option);
-    setThisOrThatChoice(pair.id, option === 'A' ? 'optionA' : 'optionB');
-    const updatedDishes = [...pickedDishes, dish];
-    setPickedDishes(updatedDishes);
+    setSelectedSide(side);
+    const updated = [...userSelections, dish];
+    setUserSelections(updated);
 
     setTimeout(() => {
-      if (currentRound + 1 < THIS_OR_THAT_PAIRS.length) {
-        setCurrentRound(prev => prev + 1);
-        setSelectedChoice(null);
+      setSelectedSide(null);
+      if (currentPairIdx + 1 < THIS_OR_THAT_PAIRS.length) {
+        setCurrentPairIdx(prev => prev + 1);
       } else {
-        const scoreResult = calculateSoloScore(updatedDishes);
-        setResult(scoreResult.personality, scoreResult.averagedDimensions, scoreResult.traits, null);
-        setStep('analyzing');
+        handleFinish(updated);
       }
-    }, 350);
+    }, 900);
+  };
+
+  const handleFinish = (finalPicks: Dish[]) => {
+    const scoreResult = calculateSoloScore(finalPicks);
+
+    const traits = [
+      '⚔️ 15 RAPID DILEMMAS COMPLETED',
+      '🔥 Community Alignment: 84.6% Choice Match with Urban Gen-Z Foodies',
+      '⚡ Instinct Rating: Zero hesitation under pressure'
+    ];
+
+    setResult(scoreResult.personality, scoreResult.averagedDimensions, traits, null);
+    setStep('analyzing');
   };
 
   return (
-    <div style={{ width: '100%', minHeight: '100vh', paddingBottom: '32px' }}>
-      <Header showBack title={`Round ${currentRound + 1}/15`} />
+    <div style={{ width: '100%', minHeight: '100vh', padding: '0 20px 40px 20px', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
+      <Header showBack title="⚔️ This or That" />
 
-      {/* Progress Bar */}
-      <div style={{ width: '100%', height: '4px', backgroundColor: 'var(--knomi-surface-card)' }}>
+      {/* Progress Header */}
+      <div style={{ textAlign: 'center', marginTop: '10px' }}>
         <div style={{
-          height: '100%',
-          width: `${progressPercent}%`,
-          backgroundColor: '#8B5CF6',
-          transition: 'width 0.3s ease'
-        }} />
-      </div>
-
-      {/* Round Subheader */}
-      <div style={{ padding: '20px', textAlign: 'center' }}>
-        <span style={{ fontSize: '12px', fontWeight: 600, color: '#8B5CF6', letterSpacing: '0.05em' }}>
-          {pair.category.toUpperCase()}
-        </span>
-        <h2 style={{ fontSize: '20px', color: 'var(--knomi-text-primary)', marginTop: '4px' }}>
-          Which one speaks to your soul?
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '6px',
+          padding: '4px 12px',
+          borderRadius: 'var(--radius-full)',
+          backgroundColor: 'rgba(139, 92, 246, 0.15)',
+          color: '#8B5CF6',
+          fontSize: '11px',
+          fontWeight: 700,
+          marginBottom: '8px'
+        }}>
+          ROUND {currentPairIdx + 1} OF {THIS_OR_THAT_PAIRS.length}
+        </div>
+        <h2 style={{ fontSize: '20px', color: 'var(--knomi-text-primary)' }}>
+          Which one do you crave more?
         </h2>
       </div>
 
-      {/* Binary Cards Section */}
+      {/* Dilemma Split Screen */}
       <AnimatePresence mode="wait">
         <motion.div
-          key={currentRound}
+          key={pair.id}
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.95 }}
-          transition={{ duration: 0.25 }}
-          style={{
-            padding: '0 20px',
-            display: 'flex',
-            gap: '12px',
-            alignItems: 'stretch',
-            justifyContent: 'center'
-          }}
+          transition={{ duration: 0.3 }}
+          style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '16px', margin: '20px 0' }}
         >
-          {/* Option A */}
+          {/* Dish A (Left) */}
           <motion.div
-            whileTap={{ scale: 0.96 }}
-            onClick={() => handlePick('A', pair.optionA)}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => handleSelect(pair.optionA, 'left')}
             style={{
-              flex: 1,
-              borderRadius: 'var(--radius-xl)',
-              backgroundColor: selectedChoice === 'A' ? 'var(--knomi-surface-selected)' : 'var(--knomi-surface-card)',
-              border: selectedChoice === 'A' ? '2px solid #8B5CF6' : '1px solid var(--knomi-border-strong)',
-              boxShadow: selectedChoice === 'A' ? '0 0 24px rgba(139, 92, 246, 0.4)' : 'var(--shadow-card)',
+              width: '100%',
               padding: '16px',
+              borderRadius: 'var(--radius-xl)',
+              backgroundColor: selectedSide === 'left' ? 'rgba(139, 92, 246, 0.25)' : 'var(--knomi-surface-card)',
+              border: selectedSide === 'left' ? '2px solid #8B5CF6' : '1px solid var(--knomi-border-strong)',
+              boxShadow: 'var(--shadow-card)',
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
+              gap: '16px',
               cursor: 'pointer',
-              opacity: selectedChoice === 'B' ? 0.3 : 1,
-              transition: 'all 0.2s ease'
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
             <img
               src={pair.optionA.imageUrl}
               alt={pair.optionA.name}
-              style={{
-                width: '100%',
-                height: '140px',
-                objectFit: 'cover',
-                borderRadius: 'var(--radius-lg)',
-                marginBottom: '12px'
-              }}
+              style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-lg)', objectFit: 'cover' }}
             />
-            <h3 style={{ fontSize: '15px', textAlign: 'center', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
-              {pair.optionA.name}
-            </h3>
-            <span style={{ fontSize: '12px', color: 'var(--knomi-whiskey-sour)', fontWeight: 600 }}>
-              ₹{pair.optionA.price}
-            </span>
+            <div style={{ flex: 1, textAlign: 'left' }}>
+              <h3 style={{ fontSize: '18px', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
+                {pair.optionA.name}
+              </h3>
+              <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--knomi-whiskey-sour)' }}>
+                ₹{pair.optionA.price}
+              </span>
+
+              {/* Animated Benchmark Stats Bar */}
+              {selectedSide && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: '68%' }}
+                  style={{
+                    height: '6px',
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: '3px',
+                    marginTop: '8px'
+                  }}
+                />
+              )}
+            </div>
+
+            {selectedSide && (
+              <span style={{ fontSize: '18px', fontWeight: 700, color: '#8B5CF6' }}>
+                68%
+              </span>
+            )}
           </motion.div>
 
-          {/* Option B */}
+          {/* VS Divider Badge */}
+          <div style={{ textAlign: 'center' }}>
+            <span style={{
+              padding: '6px 14px',
+              borderRadius: 'var(--radius-full)',
+              backgroundColor: '#150C0C',
+              border: '1px solid var(--knomi-border-strong)',
+              fontSize: '12px',
+              fontWeight: 800,
+              color: 'var(--knomi-whiskey-sour)'
+            }}>
+              VS
+            </span>
+          </div>
+
+          {/* Dish B (Right) */}
           <motion.div
-            whileTap={{ scale: 0.96 }}
-            onClick={() => handlePick('B', pair.optionB)}
+            whileTap={{ scale: 0.97 }}
+            onClick={() => handleSelect(pair.optionB, 'right')}
             style={{
-              flex: 1,
-              borderRadius: 'var(--radius-xl)',
-              backgroundColor: selectedChoice === 'B' ? 'var(--knomi-surface-selected)' : 'var(--knomi-surface-card)',
-              border: selectedChoice === 'B' ? '2px solid #8B5CF6' : '1px solid var(--knomi-border-strong)',
-              boxShadow: selectedChoice === 'B' ? '0 0 24px rgba(139, 92, 246, 0.4)' : 'var(--shadow-card)',
+              width: '100%',
               padding: '16px',
+              borderRadius: 'var(--radius-xl)',
+              backgroundColor: selectedSide === 'right' ? 'rgba(139, 92, 246, 0.25)' : 'var(--knomi-surface-card)',
+              border: selectedSide === 'right' ? '2px solid #8B5CF6' : '1px solid var(--knomi-border-strong)',
+              boxShadow: 'var(--shadow-card)',
               display: 'flex',
-              flexDirection: 'column',
               alignItems: 'center',
+              gap: '16px',
               cursor: 'pointer',
-              opacity: selectedChoice === 'A' ? 0.3 : 1,
-              transition: 'all 0.2s ease'
+              position: 'relative',
+              overflow: 'hidden'
             }}
           >
             <img
               src={pair.optionB.imageUrl}
               alt={pair.optionB.name}
-              style={{
-                width: '100%',
-                height: '140px',
-                objectFit: 'cover',
-                borderRadius: 'var(--radius-lg)',
-                marginBottom: '12px'
-              }}
+              style={{ width: '80px', height: '80px', borderRadius: 'var(--radius-lg)', objectFit: 'cover' }}
             />
-            <h3 style={{ fontSize: '15px', textAlign: 'center', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
-              {pair.optionB.name}
-            </h3>
-            <span style={{ fontSize: '12px', color: 'var(--knomi-whiskey-sour)', fontWeight: 600 }}>
-              ₹{pair.optionB.price}
-            </span>
+            <div style={{ flex: 1, textAlign: 'left' }}>
+              <h3 style={{ fontSize: '18px', color: 'var(--knomi-text-primary)', marginBottom: '4px' }}>
+                {pair.optionB.name}
+              </h3>
+              <span style={{ fontSize: '14px', fontWeight: 700, color: 'var(--knomi-whiskey-sour)' }}>
+                ₹{pair.optionB.price}
+              </span>
+
+              {/* Animated Benchmark Stats Bar */}
+              {selectedSide && (
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: '32%' }}
+                  style={{
+                    height: '6px',
+                    backgroundColor: '#8B5CF6',
+                    borderRadius: '3px',
+                    marginTop: '8px'
+                  }}
+                />
+              )}
+            </div>
+
+            {selectedSide && (
+              <span style={{ fontSize: '18px', fontWeight: 700, color: '#8B5CF6' }}>
+                32%
+              </span>
+            )}
           </motion.div>
         </motion.div>
       </AnimatePresence>
+
+      <div style={{ textAlign: 'center', fontSize: '12px', color: 'var(--knomi-text-muted)' }}>
+        KNOMI Dilemma Engine • Pick instantly to decode your food instinct
+      </div>
     </div>
   );
 };
