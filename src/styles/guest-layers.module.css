@@ -1,0 +1,50 @@
+.layerCanvas {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.layerAtmosphere {
+  z-index: 2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.layerContent {
+  z-index: 3;
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.layerHud {
+  z-index: 4;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+@keyframes compositorScroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+.canvasAnimationLoop {
+  will-change: transform;
+  animation: compositorScroll 20s linear infinite;
+}

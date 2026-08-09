@@ -3,14 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import type { TargetAndTransition } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
 import { DISHES } from '../../data/dishes';
-import type { DishCategory } from '../../types/dish';
+import type { DishCategory, Dish } from '../../types/dish';
 import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useGameStore } from '../../stores/useGameStore';
 import { useResultStore } from '../../stores/useResultStore';
 import { calculateSoloScore } from '../../engine/scoringEngine';
 import { generateRoastPayload } from '../../engine/roastGenerator';
 import { PlateBar } from './PlateBar';
-import { Plus, Check, ChevronUp, ChevronDown, Sparkles } from 'lucide-react';
+import { Plus, Check, ChevronUp, ChevronDown } from 'lucide-react';
+import themeStyles from '../../styles/guest-theme.module.css';
+import layerStyles from '../../styles/guest-layers.module.css';
 
 const CATEGORIES: { id: DishCategory; label: string; icon: string }[] = [
   { id: 'starters', label: 'Starters', icon: '🥗' },
@@ -32,7 +34,7 @@ export const OfficialGuestMenuContainer: React.FC = () => {
   const { setResult } = useResultStore();
 
   const categoryDishes = useMemo(() => DISHES.filter(d => d.category === activeCategory), [activeCategory]);
-  const currentDish = categoryDishes[currentIndex] || categoryDishes[0];
+  const currentDish: Dish = categoryDishes[currentIndex] || categoryDishes[0];
 
   const handleCategorySwitch = (cat: DishCategory) => {
     setActiveCategory(cat);
@@ -107,104 +109,80 @@ export const OfficialGuestMenuContainer: React.FC = () => {
   return (
     <div
       {...bind()}
-      style={{
-        width: '100vw',
-        height: '100vh',
-        maxWidth: '440px',
-        position: 'relative',
-        overflow: 'hidden',
-        backgroundColor: '#1a1a1a',
-        color: '#ffffff',
-        fontFamily: 'system-ui, -apple-system, sans-serif',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        margin: '0 auto',
-        touchAction: 'none'
-      }}
+      className={themeStyles.appContainer}
+      style={{ touchAction: 'none' }}
     >
-      {/* BAR-HEADER (Guest Menu Top Bar) */}
-      <div style={{
-        position: 'relative',
-        zIndex: 80,
-        padding: '16px 20px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        backgroundColor: 'rgba(26, 26, 26, 0.9)',
-        backdropFilter: 'blur(10px)',
-        borderBottom: '1px solid rgba(255, 255, 255, 0.1)'
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-          <Sparkles size={20} color="#d4a017" />
-          <span style={{ fontWeight: 700, fontSize: '18px', letterSpacing: '0.05em', color: '#ffffff' }}>
-            KNOMI <span style={{ color: '#d4a017' }}>GUEST MENU</span>
-          </span>
+      {/* LAYER 1: Canvas Base */}
+      <div
+        className={layerStyles.layerCanvas}
+        style={{
+          backgroundColor: '#150C0C',
+          backgroundImage: 'radial-gradient(ellipse at 50% 30%, #241613 0%, #150C0C 75%)'
+        }}
+      />
+
+      {/* LAYER 2: Atmosphere */}
+      <div className={layerStyles.layerAtmosphere}>
+        <div style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '40%',
+          background: 'linear-gradient(to bottom, rgba(211, 152, 88, 0.12) 0%, transparent 100%)'
+        }} />
+      </div>
+
+      {/* LAYER 3: Content */}
+      <div className={layerStyles.layerContent}>
+        {/* Header Overlay */}
+        <div className={themeStyles.header}>
+          <h2 className={themeStyles.restaurantName}>KNOMI</h2>
+          <p className={themeStyles.restaurantTagline}>BUON APPETITO!</p>
         </div>
 
-        <button
-          onClick={() => setNavMode(!navMode)}
-          style={{
-            padding: '6px 12px',
-            borderRadius: '16px',
-            backgroundColor: navMode ? '#d4a017' : 'rgba(255, 255, 255, 0.1)',
-            color: navMode ? '#1a1a1a' : '#ffffff',
-            fontWeight: 600,
-            fontSize: '12px',
-            border: 'none',
-            cursor: 'pointer'
-          }}
-        >
-          {navMode ? 'Exit Nav' : 'Nav Mode'}
-        </button>
-      </div>
+        {/* Category Switcher Bar */}
+        <div style={{
+          position: 'absolute',
+          top: '5rem',
+          left: 0,
+          right: 0,
+          zIndex: 80,
+          display: 'flex',
+          gap: '6px',
+          overflowX: 'auto',
+          padding: '8px 20px',
+          backgroundColor: 'rgba(21, 12, 12, 0.6)'
+        }}>
+          {CATEGORIES.map(cat => {
+            const isActive = activeCategory === cat.id;
+            return (
+              <button
+                key={cat.id}
+                onClick={() => handleCategorySwitch(cat.id)}
+                style={{
+                  padding: '6px 14px',
+                  borderRadius: '20px',
+                  backgroundColor: isActive ? 'var(--knomi-whiskey-sour)' : 'rgba(255, 255, 255, 0.08)',
+                  color: isActive ? '#150C0C' : '#FFFFFF',
+                  fontWeight: 600,
+                  fontSize: '12px',
+                  whiteSpace: 'nowrap',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '6px',
+                  border: 'none',
+                  cursor: 'pointer'
+                }}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.label}</span>
+              </button>
+            );
+          })}
+        </div>
 
-      {/* CATEGORY NAV OVERLAY (Category Switcher Bar) */}
-      <div style={{
-        position: 'relative',
-        zIndex: 80,
-        display: 'flex',
-        gap: '6px',
-        overflowX: 'auto',
-        padding: '10px 20px',
-        backgroundColor: 'rgba(0, 0, 0, 0.4)'
-      }}>
-        {CATEGORIES.map(cat => {
-          const isActive = activeCategory === cat.id;
-          return (
-            <button
-              key={cat.id}
-              onClick={() => handleCategorySwitch(cat.id)}
-              style={{
-                padding: '6px 14px',
-                borderRadius: '20px',
-                backgroundColor: isActive ? '#d4a017' : 'rgba(255, 255, 255, 0.08)',
-                color: isActive ? '#1a1a1a' : '#ffffff',
-                fontWeight: 600,
-                fontSize: '12px',
-                whiteSpace: 'nowrap',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '6px',
-                border: 'none',
-                cursor: 'pointer'
-              }}
-            >
-              <span>{cat.icon}</span>
-              <span>{cat.label}</span>
-            </button>
-          );
-        })}
-      </div>
-
-      {/* DISH CARD CONTAINER (Full-bleed Reels Stack) */}
-      <div style={{
-        position: 'relative',
-        flex: 1,
-        width: '100%',
-        height: '100%',
-        overflow: 'hidden'
-      }}>
+        {/* Main Dish Reel */}
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={currentDish.id}
@@ -213,91 +191,57 @@ export const OfficialGuestMenuContainer: React.FC = () => {
             initial="enter"
             animate="center"
             exit="exit"
-            style={{
-              position: 'absolute',
-              inset: 0,
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'space-between',
-              padding: '0 0 100px 0'
-            }}
+            className={themeStyles.dishCardContainer}
           >
-            {/* imageSection (55% height) */}
-            <div style={{
-              width: '100%',
-              height: '55%',
-              display: 'flex',
-              justifyContent: 'center',
-              alignItems: 'center',
-              position: 'relative',
-              marginTop: '1rem'
-            }}>
+            {/* imageSection (55% viewport height) */}
+            <div className={themeStyles.imageSection}>
               <motion.img
                 src={currentDish.imageUrl}
                 alt={currentDish.name}
+                className={themeStyles.dishImage}
                 initial={{ scale: 0.9 }}
                 animate={{ scale: 1 }}
                 style={{
-                  width: '80%',
-                  maxHeight: '220px',
-                  objectFit: 'contain',
-                  filter: isSelected ? 'drop-shadow(0 0 24px #d4a017)' : 'drop-shadow(0 12px 24px rgba(0,0,0,0.6))',
-                  pointerEvents: 'none'
+                  filter: isSelected ? 'drop-shadow(0 0 24px var(--knomi-whiskey-sour))' : 'drop-shadow(0 12px 24px rgba(0,0,0,0.6))'
                 }}
               />
             </div>
 
-            {/* detailsSection (32% height grid: Col-Left & Col-Right) */}
-            <div style={{
-              height: '35%',
-              padding: '1.5rem 2rem',
-              display: 'grid',
-              gridTemplateColumns: '1fr 80px',
-              gap: '1.5rem',
-              alignItems: 'end',
-              backgroundColor: 'transparent'
-            }}>
-              {/* Col-Left (dishName & dishDescription) */}
-              <div style={{ textAlign: 'left', display: 'flex', flexDirection: 'column', gap: '0.5rem' }}>
-                <h1 style={{ fontSize: '1.8rem', fontWeight: 700, margin: 0, lineHeight: 1.1, color: '#ffffff' }}>
-                  {currentDish.name}
-                </h1>
-                <p style={{ fontSize: '0.95rem', opacity: 0.75, margin: 0, lineHeight: 1.4, color: 'rgba(255, 255, 255, 0.8)' }}>
-                  {currentDish.description}
-                </p>
-              </div>
+            {/* detailsSection (32% height grid: detailsLeftCol & detailsRightCol) */}
+            <div className={themeStyles.detailsSection}>
+              <div className={themeStyles.detailsContainerGrid}>
+                <div className={themeStyles.detailsLeftCol}>
+                  <h1 className={themeStyles.dishName}>{currentDish.name}</h1>
+                  <p className={themeStyles.dishDescription}>{currentDish.description}</p>
+                </div>
 
-              {/* Col-Right (addButton & dishPrice) */}
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0.75rem' }}>
-                <span style={{ fontSize: '1.25rem', fontWeight: 700, color: '#d4a017' }}>
-                  ₹{currentDish.price}
-                </span>
-
-                <button
-                  onClick={() => toggleDish(currentDish.id)}
-                  style={{
-                    width: '48px',
-                    height: '48px',
-                    borderRadius: '24px',
-                    backgroundColor: isSelected ? '#d4a017' : 'transparent',
-                    color: isSelected ? '#1a1a1a' : '#d4a017',
-                    border: isSelected ? 'none' : '2px solid #d4a017',
-                    fontSize: '1.5rem',
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    cursor: 'pointer'
-                  }}
-                  aria-label={`Add ${currentDish.name} to selection`}
-                >
-                  {isSelected ? <Check size={22} strokeWidth={3} /> : <Plus size={22} />}
-                </button>
+                <div className={themeStyles.detailsRightCol}>
+                  <span className={themeStyles.dishPrice}>₹{currentDish.price}</span>
+                  <button
+                    className={themeStyles.addButton}
+                    onClick={() => toggleDish(currentDish.id)}
+                    style={{
+                      backgroundColor: isSelected ? 'var(--knomi-whiskey-sour)' : 'transparent',
+                      color: isSelected ? '#150C0C' : 'var(--knomi-whiskey-sour)',
+                      borderColor: 'var(--knomi-whiskey-sour)'
+                    }}
+                  >
+                    {isSelected ? <Check size={22} strokeWidth={3} /> : <Plus size={22} />}
+                  </button>
+                </div>
               </div>
             </div>
           </motion.div>
         </AnimatePresence>
 
-        {/* Up/Down Swipe Nav Indicators */}
+        {/* Category Bottom Badge */}
+        <div className={themeStyles.categoryBottomBadgeContainer}>
+          <div className={themeStyles.categoryBottomBadge} style={{ backgroundColor: 'var(--knomi-whiskey-sour)', color: '#150C0C' }}>
+            {activeCategory} • {currentIndex + 1}/{categoryDishes.length}
+          </div>
+        </div>
+
+        {/* Up/Down Swipe Indicators */}
         <div style={{
           position: 'absolute',
           right: '16px',
@@ -346,9 +290,63 @@ export const OfficialGuestMenuContainer: React.FC = () => {
             <ChevronDown size={22} />
           </button>
         </div>
+
+        {/* Nav Mode Overlay Screen */}
+        <AnimatePresence>
+          {navMode && (
+            <motion.div
+              className={themeStyles.dishNavOverlay}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <div className={layerStyles.layerCanvas} style={{ backgroundColor: 'rgba(21, 12, 12, 0.95)' }} />
+              <div className={layerStyles.layerContent} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '2rem', textAlign: 'center' }}>
+                <h2 className={themeStyles.navTitle}>Explore our menu</h2>
+                <p className={themeStyles.navSubtitle}>SWIPE UP / DOWN TO SCRUB</p>
+
+                <div className={themeStyles.navDishImageContainer}>
+                  <img src={currentDish.imageUrl} alt={currentDish.name} className={themeStyles.navDishImage} />
+                </div>
+
+                <div className={themeStyles.positionDotsContainer}>
+                  <div className={themeStyles.dotsTrack}>
+                    {categoryDishes.map((_, i) => (
+                      <div
+                        key={i}
+                        className={`${themeStyles.positionDot} ${i === currentIndex ? themeStyles.positionDotActive : ''}`}
+                        style={{ backgroundColor: i === currentIndex ? 'var(--knomi-whiskey-sour)' : '#ffffff' }}
+                      />
+                    ))}
+                  </div>
+                </div>
+
+                <h1 className={themeStyles.navDishName} style={{ color: 'var(--knomi-whiskey-sour)' }}>
+                  {currentDish.name}
+                </h1>
+
+                <button
+                  onClick={() => setNavMode(false)}
+                  style={{
+                    marginTop: '20px',
+                    padding: '10px 24px',
+                    borderRadius: '20px',
+                    backgroundColor: 'var(--knomi-whiskey-sour)',
+                    color: '#150C0C',
+                    fontWeight: 700,
+                    border: 'none',
+                    cursor: 'pointer'
+                  }}
+                >
+                  Close Scrub Grid
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
-      {/* BAR-HUD & PLATE BAR SELECTION TRAY */}
+      {/* LAYER 4: HUD PlateBar */}
       <PlateBar
         selectedCount={selectedDishIds.length}
         minCount={5}

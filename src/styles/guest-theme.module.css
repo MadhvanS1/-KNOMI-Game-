@@ -1,0 +1,262 @@
+.appContainer {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--theme-bg, #1a1a1a);
+  color: var(--theme-text, #ffffff);
+  font-family: var(--theme-font, system-ui, sans-serif);
+}
+
+.menuContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  position: absolute;
+  top: 1.5rem;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  z-index: 70;
+  pointer-events: none;
+}
+
+.restaurantName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--theme-primary, #C0392B);
+}
+
+.restaurantTagline {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin: 0.25rem 0 0 0;
+  letter-spacing: 0.15em;
+  opacity: 0.7;
+  color: var(--theme-text, #333333);
+}
+
+.dishCardContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding-bottom: 0;
+  z-index: 60;
+}
+
+.imageSection {
+  width: 100%;
+  height: 55%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  position: relative;
+  margin-top: 3.5rem;
+}
+
+.dishImage {
+  width: 80%;
+  max-height: 220px;
+  object-fit: contain;
+  pointer-events: none;
+}
+
+.detailsSection {
+  height: 32%;
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: relative;
+  background-color: transparent;
+}
+
+.detailsContainerGrid {
+  display: grid;
+  grid-template-columns: 1fr 80px;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.detailsLeftCol {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: left;
+}
+
+.detailsRightCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 0.75rem;
+  position: relative;
+}
+
+.dishName {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+  line-height: 1.1;
+  color: var(--theme-text, #ffffff);
+}
+
+.dishDescription {
+  font-size: 1rem;
+  opacity: 0.75;
+  margin: 0;
+  line-height: 1.4;
+  color: var(--theme-text, #dddddd);
+}
+
+.dishPrice {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--theme-primary, #C0392B);
+}
+
+.addButton {
+  width: 48px;
+  height: 48px;
+  border-radius: 24px;
+  background-color: transparent;
+  color: var(--theme-primary, #C0392B);
+  border: 2px solid var(--theme-primary, #C0392B);
+  font-size: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.categoryOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 50;
+  pointer-events: none;
+}
+
+.categoryOverlayText {
+  font-size: 3rem;
+  font-weight: 800;
+  text-align: center;
+  text-shadow: 0 4px 12px rgba(0,0,0,0.5);
+  padding: 0 2rem;
+}
+
+.categoryBottomBadgeContainer {
+  position: absolute;
+  bottom: 2rem;
+  left: 7rem;
+  z-index: 55;
+  pointer-events: none;
+}
+
+.categoryBottomBadge {
+  background-color: var(--theme-primary, #C0392B);
+  color: var(--theme-text-primary, #ffffff);
+  padding: 0.4rem 1.2rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.dishNavOverlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.navTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin: 0;
+  color: var(--theme-text, #ffffff);
+}
+
+.navSubtitle {
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  opacity: 0.6;
+  margin: 0.25rem 0 1.5rem 0;
+  color: var(--theme-text, #ffffff);
+}
+
+.navDishImageContainer {
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.navDishImage {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.navDishName {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 1rem 0 0 0;
+  color: var(--theme-primary, #C0392B);
+}
+
+.positionDotsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0.5rem 0;
+}
+
+.dotsTrack {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.positionDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+  background-color: var(--theme-text, #ffffff);
+  opacity: 0.3;
+  transition: all 0.2s ease;
+}
+
+.positionDotActive {
+  opacity: 1;
+  width: 20px;
+  background-color: var(--theme-primary, #C0392B);
+}
