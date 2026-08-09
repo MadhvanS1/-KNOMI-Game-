@@ -3,7 +3,8 @@
 > **Master Roadmap & Implementation Step Tracker**
 > **GitHub Repository:** [https://github.com/MadhvanS1/-KNOMI-Game-](https://github.com/MadhvanS1/-KNOMI-Game-)
 > **Live Site:** [https://madhvans1.github.io/-KNOMI-Game-/](https://madhvans1.github.io/-KNOMI-Game-/)
-> **Current Status:** 🟢 **ALL 16 GAME MODES ACROSS ALL 4 PHASES 100% COMPLETED & LIVE**
+> **Mode Perfection Plan:** [`docs/MODES_AUDIT_PLAN.md`](MODES_AUDIT_PLAN.md)
+> **Current Status:** 🟢 **READY FOR 5-PHASE MODE-BY-MODE AUDIT & POLISH**
 > **Target Launch:** August 27, 2026 (Constellation College Fest)
 
 ---
@@ -13,37 +14,26 @@
 ```
 [x] STEP 1 : Discovery, Business Model & Strategy Alignment (DONE)
 [x] STEP 2 : Architecture & Complete System Blueprint (DONE)
-[x] STEP 3 : Complete Documentation Suite (10 Master Specs) (DONE)
+[x] STEP 3 : Complete Documentation Suite (11 Master Specs) (DONE)
 [x] STEP 4 : Project Initialization & Standalone Repo Setup (DONE)
-[x] STEP 5 : Phase 1 Launch Modes (5/5 Modes Built & Deployed) (DONE)
-[x] STEP 6 : Phase 2 Expansion Modes (3/3 Modes: Speed, Red Flags, Squad) (DONE)
-[x] STEP 7 : Phase 3 Psychological High-Stakes Modes (6/6 Modes) (DONE)
-[x] STEP 8 : Phase 4 Retention & Vanity Profile Engine (2/2 Modes) (DONE)
-[x] STEP 9 : Official KNOMI Guest App Menu Integration & Props (DONE)
-[x] STEP 10: Physical Touch & Drag Gestures (@use-gesture/react) (DONE)
-[x] STEP 11: End-to-End Testing & Production Build Verification (DONE)
-[x] STEP 12: Production Deployment (GitHub Pages Live - 16/16 Modes) (DONE)
+[x] STEP 5 : All 16 Modes Feature Implementation (16/16 Built) (DONE)
+[x] STEP 6 : Official KNOMI Guest App Menu Integration & Props (DONE)
+[x] STEP 7 : Physical Touch & Drag Gestures (@use-gesture/react) (DONE)
+[ ] STEP 8 : Phase 1 Mode Audit (Modes 1, 2, 3, 4) (IN PROGRESS)
+[ ] STEP 9 : Phase 2 Mode Audit (Modes 5, 6, 7) (QUEUED)
+[ ] STEP 10: Phase 3 Mode Audit (Modes 8, 9, 10) (QUEUED)
+[ ] STEP 11: Phase 4 Mode Audit (Modes 11, 12, 13) (QUEUED)
+[ ] STEP 12: Phase 5 Mode Audit (Modes 14, 15, 16) (QUEUED)
 ```
 
 ---
 
-## 🎮 ALL 16 GAME MODES COMPLETED STATUS (16/16 LIVE)
+## 🎮 5-PHASE MODE AUDIT STRUCTURE
 
-| Phase | Mode | Title | Status | Features |
-|---|---|---|---|---|
-| **Phase 1** | **Mode 1** | 🧠 **Solo: Read My Food Soul** | ✅ **LIVE** | 30 dishes, 4 categories, 10s suspense animation, personality reveal card |
-| **Phase 1** | **Mode 2** | 💀 **Challenge: Break KNOMI** | ✅ **LIVE** | Hover tracking, anti-fooling algorithms, 3% win rate challenge |
-| **Phase 1** | **Mode 3** | 💕 **Couple: Compatibility Test** | ✅ **LIVE** | Partner link sharing, shared dish calculation, relationship compatibility % |
-| **Phase 1** | **Mode 4** | ⚔️ **This or That: Food Dilemmas** | ✅ **LIVE** | 15 rapid binary choice rounds, instant progress animations |
-| **Phase 1** | **Mode 5** | 🔥 **The Roast: Get Roasted** | ✅ **LIVE** | Savage roast cards, red fire theme, custom dish callouts |
-| **Phase 2** | **Mode 6** | ⚡ **Speed Round: Gut Check** | ✅ **LIVE** | 30s blitz timer, instinct vs curated personality analysis |
-| **Phase 2** | **Mode 7** | 🚩 **Red Flags / Green Flags** | ✅ **LIVE** | Food dating profile report card with 🟢 & 🚩 callouts |
-| **Phase 2** | **Mode 8** | 👥 **Roast Squad: Group Ranking** | ✅ **LIVE** | Room code sharing, basic taste squad rankings, collective squad archetype |
-| **Phase 3** | **Mode 9** | 🎭 **The Liar's Table (*Liar Game*)** | ✅ **LIVE** | Secret roles, 1 hidden bluff dish, interrogation group voting |
-| **Phase 3** | **Mode 10** | ☠️ **Food Russian Roulette (*Squid Game*)** | ✅ **LIVE** | 5 rounds, 5s countdown timers, 1 poison trap, 1% survivor gold card |
-| **Phase 3** | **Mode 11** | 🎰 **Kakegurui Feast (*Kakegurui*)** | ✅ **LIVE** | 1v1 betting duel wagering FRP (Food Reputation Points) chips |
-| **Phase 3** | **Mode 12** | 🐍 **Split or Steal (*Tomodachi Game*)** | ✅ **LIVE** | Simultaneous secret [SHARE] vs [STEAL] voting, Soulmates vs Snake ratings |
-| **Phase 3** | **Mode 13** | 👁️ **Mind-Reader Duel (*Death Note*)** | ✅ **LIVE** | Order deduction strictly from anonymized scroll & hover telemetry |
-| **Phase 3** | **Mode 14** | 🕵️ **The Traitor (*Among Us*)** | ✅ **LIVE** | 4–8 players, 1 secret Saboteur altering squad flavor profile |
-| **Phase 4** | **Mode 15** | 🌙 **Themed Mood Menus** | ✅ **LIVE** | Contextual drops (Monsoon, 2 AM Craving, Broke Student ₹200 limit) |
-| **Phase 4** | **Mode 16** | 🏆 **The Food Resume (`knomi.in/me/username`)** | ✅ **LIVE** | Permanent vanity bio profile link with stats, badges, and compatibility scores |
+| Audit Phase | Game Modes Included | Status |
+|---|---|---|
+| **Phase 1 Audit** | 🧠 Mode 1 (Solo), 💀 Mode 2 (Challenge), 💕 Mode 3 (Couple), ⚔️ Mode 4 (This or That) | 🟡 **ACTIVE** |
+| **Phase 2 Audit** | 🔥 Mode 5 (Roast), ⚡ Mode 6 (Speed Round), 🚩 Mode 7 (Red/Green Flags) | ⏳ Queued |
+| **Phase 3 Audit** | 👥 Mode 8 (Roast Squad), 🎭 Mode 9 (Liar's Table), ☠️ Mode 10 (Russian Roulette) | ⏳ Queued |
+| **Phase 4 Audit** | 🎰 Mode 11 (Kakegurui), 🐍 Mode 12 (Split/Steal), 👁️ Mode 13 (Mind Reader) | ⏳ Queued |
+| **Phase 5 Audit** | 🕵️ Mode 14 (The Traitor), 🌙 Mode 15 (Mood Menus), 🏆 Mode 16 (Food Resume) | ⏳ Queued |
