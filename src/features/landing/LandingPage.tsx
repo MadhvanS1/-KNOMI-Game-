@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Users, ArrowRight, Heart, Skull, Zap, Flag, UserCheck } from 'lucide-react';
+import { Sparkles, Users, ArrowRight, Heart, Skull, Zap, Flag, UserCheck, Theater, Coins, Handshake, Eye, UserX } from 'lucide-react';
 import { useGameStore } from '../../stores/useGameStore';
 import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useResultStore } from '../../stores/useResultStore';
@@ -15,7 +15,15 @@ export const LandingPage: React.FC = () => {
     setMode(mode);
     if (severity) setRoastSeverity(severity);
 
-    if (mode === 'this-or-that' || mode === 'speed') {
+    if (
+      mode === 'this-or-that' ||
+      mode === 'speed' ||
+      mode === 'russian-roulette' ||
+      mode === 'kakegurui' ||
+      mode === 'split-steal' ||
+      mode === 'mind-reader' ||
+      mode === 'traitor'
+    ) {
       setStep('playing');
     } else {
       setStep('browsing');
@@ -76,7 +84,7 @@ export const LandingPage: React.FC = () => {
         </p>
       </motion.div>
 
-      {/* Game Mode Entry Cards (Phase 1 & Phase 2) */}
+      {/* Game Mode Entry Cards (Phase 1, Phase 2, and Phase 3) */}
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
         
         {/* Mode 1: Solo */}
@@ -93,7 +101,92 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 6: Speed Round (NEW PHASE 2) */}
+        {/* Phase 3 Modes */}
+        {/* Mode 9: The Liar's Table */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('liar-table')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Theater size={22} color="#EF4444" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FEF2F2' }}>🎭 The Liar's Table (Liar Game)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(254, 242, 242, 0.7)' }}>One person is lying about their order.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#EF4444" />
+          </div>
+        </motion.div>
+
+        {/* Mode 10: Food Russian Roulette */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('russian-roulette')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(220, 38, 38, 0.12)', border: '1px solid rgba(220, 38, 38, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Skull size={22} color="#DC2626" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FEF2F2' }}>☠️ Russian Roulette (Squid Game)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(254, 242, 242, 0.7)' }}>5 rounds, 5s timers, 1 poison trap.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#DC2626" />
+          </div>
+        </motion.div>
+
+        {/* Mode 11: Kakegurui Feast */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('kakegurui')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(212, 160, 23, 0.12)', border: '1px solid rgba(212, 160, 23, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Coins size={22} color="#D4A017" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FEFCE8' }}>🎰 Kakegurui Feast (Betting Duel)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(254, 252, 232, 0.7)' }}>Wager FRP chips on food predictions.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#D4A017" />
+          </div>
+        </motion.div>
+
+        {/* Mode 12: Split or Steal */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('split-steal')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Handshake size={22} color="#EAB308" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FEFCE8' }}>🐍 Split or Steal (Tomodachi)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(254, 252, 232, 0.7)' }}>Share the meal or steal all rewards.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#EAB308" />
+          </div>
+        </motion.div>
+
+        {/* Mode 13: Mind-Reader Duel */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('mind-reader')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(147, 51, 234, 0.08)', border: '1px solid rgba(147, 51, 234, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Eye size={22} color="#9333EA" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FAF5FF' }}>👁️ Mind Reader (Death Note)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(250, 245, 255, 0.7)' }}>Deduce orders strictly from telemetry.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#9333EA" />
+          </div>
+        </motion.div>
+
+        {/* Mode 14: The Traitor */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('traitor')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <UserX size={22} color="#EF4444" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#FEF2F2' }}>🕵️ The Traitor (Saboteur)</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(254, 242, 242, 0.7)' }}>1 player is sabotaging the group order.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#EF4444" />
+          </div>
+        </motion.div>
+
+        {/* Phase 2 Modes */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('speed')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(211, 152, 88, 0.12)', border: '1px solid rgba(211, 152, 88, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -107,7 +200,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 7: Red Flags / Green Flags (NEW PHASE 2) */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('red-flags')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(220, 38, 38, 0.08)', border: '1px solid rgba(220, 38, 38, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -121,7 +213,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 8: Roast Squad (NEW PHASE 2) */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('squad')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(139, 92, 246, 0.08)', border: '1px solid rgba(139, 92, 246, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -135,7 +226,7 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 2: Challenge */}
+        {/* Phase 1 Modes */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('challenge')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(0, 255, 136, 0.08)', border: '1px solid rgba(0, 255, 136, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -149,7 +240,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 3: Couple Mode */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('couple')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(236, 72, 153, 0.08)', border: '1px solid rgba(236, 72, 153, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -163,7 +253,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 4: This or That */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('this-or-that')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'var(--knomi-surface-card)', border: '1px solid var(--knomi-border-strong)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -177,7 +266,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 5: Roast */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('roast', 'savage')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(220, 38, 38, 0.1)', border: '1px solid rgba(220, 38, 38, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>

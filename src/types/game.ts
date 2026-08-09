@@ -6,7 +6,13 @@ export type GameMode =
   | 'couple'
   | 'speed'
   | 'red-flags'
-  | 'squad';
+  | 'squad'
+  | 'liar-table'
+  | 'russian-roulette'
+  | 'kakegurui'
+  | 'split-steal'
+  | 'mind-reader'
+  | 'traitor';
 
 export type GameStep = 'landing' | 'browsing' | 'playing' | 'analyzing' | 'revealed';
 

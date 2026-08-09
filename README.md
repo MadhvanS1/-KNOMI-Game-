@@ -4,7 +4,7 @@
 [![GitHub Repository](https://img.shields.io/badge/GitHub-MadhvanS1%2F--KNOMI--Game---black?style=flat&logo=github)](https://github.com/MadhvanS1/-KNOMI-Game-)
 [![Live Web App](https://img.shields.io/badge/Live-GitHub%20Pages-brightgreen?style=flat&logo=googlechrome)](https://madhvans1.github.io/-KNOMI-Game-/)
 [![Tech Stack](https://img.shields.io/badge/Tech-React%2019%20%7C%20TypeScript%20%7C%20Vite%207%20%7C%20Zustand-blue?style=flat)](docs/tech_stack.md)
-[![Phase 1 & 2](https://img.shields.io/badge/Phase%201%20%26%202-8%2F8%20Modes%20Completed-success?style=flat)](docs/BUILD_STEPS.md)
+[![Phase 1 2 & 3](https://img.shields.io/badge/Phase%201%202%20%26%203-14%2F14%20Modes%20Completed-success?style=flat)](docs/BUILD_STEPS.md)
 
 ---
 
@@ -27,7 +27,7 @@ Instead of traditional, low-conversion B2B cold calling:
 
 ---
 
-## 🎮 Game Modes Breakdown (8 Live Modes Across Phase 1 & 2)
+## 🎮 Game Modes Breakdown (14 Live Modes Across Phase 1, 2 & 3)
 
 ### 🟢 Phase 1: Core Launch MVP Modes (Completed & Live)
 1. 🧠 **Solo: Read My Food Soul** — Pick 5-7 dishes → 10s suspense loading animation → Personality Reveal Card + Trait Cards + Prediction.
@@ -41,15 +41,15 @@ Instead of traditional, low-conversion B2B cold calling:
 7. 🚩 **Red Flags / Green Flags** — Ordering habits categorized into a viral dating profile report card (`🟢` & `🚩`).
 8. 👥 **Roast Squad** — Group QR room ranking from "Least Basic" to "Most Basic".
 
-### 🎭 Phase 3: Psychological High-Stakes Modes (Upcoming)
-9. 🎭 **The Liar's Table (*Liar Game*)** — 3–6 players, secret roles, 1 hidden bluff dish, 60s interrogation → group voting.
-10. ☠️ **Food Russian Roulette (*Squid Game / Kaiji*)** — 5 rounds, 5-second timers, hidden Poison Traps → 1% Survivor Gold Card.
-11. 🎰 **Kakegurui Feast (*Kakegurui*)** — 1v1 betting duel wagering Food Reputation Points (FRP).
+### 🎭 Phase 3: Psychological High-Stakes Modes (Completed & Live)
+9. 🎭 **The Liar's Table (*Liar Game*)** — Secret roles, 1 hidden bluff dish, 60s interrogation → group voting.
+10. ☠️ **Food Russian Roulette (*Squid Game*)** — 5 rounds, 5-second timers, 1 Poison Trap → 1% Survivor Gold Card.
+11. 🎰 **Kakegurui Feast (*Kakegurui*)** — 1v1 betting duel wagering Food Reputation Points (FRP) chips.
 12. 🐍 **Split or Steal (*Tomodachi Game*)** — 2 friends order together: Secret [SHARE] vs [STEAL] vote.
-13. 👁️ **Mind-Reader Duel (*Death Note*)** — Predictor sees only anonymized behavioral metrics to deduce the exact order.
+13. 👁️ **Mind-Reader Duel (*Death Note*)** — Deduce exact orders strictly from anonymized scroll & hover telemetry.
 14. 🕵️ **The Traitor (*Among Us*)** — 4–8 players, 1 Saboteur subtly altering the group's spice/comfort average.
 
-### 🏆 Phase 4: Retention Engine Modes
+### 🏆 Phase 4: Retention Engine Modes (Upcoming)
 15. 🌙 **Themed Mood Menus** — Contextual menu drops (*Monsoon Comfort, 2 AM Craving, Broke Student ₹200 limit*).
 16. 🏆 **The Food Resume (`knomi.in/me/username`)** — Permanent vanity bio profile link with stats, badges, and compatibility scores.
 
@@ -61,7 +61,7 @@ All documentation is maintained side-by-side inside the [`docs/`](docs/) directo
 
 | Document | Description |
 |---|---|
-| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker & Roadmap:** Real-time step progress from Step 1 to Step 11. |
+| 📄 [`docs/BUILD_STEPS.md`](docs/BUILD_STEPS.md) | **Active Step Tracker & Roadmap:** Real-time step progress from Step 1 to Step 12. |
 | 📄 [`docs/requirements.md`](docs/requirements.md) | **Product Requirements:** Functional specs, menu structure, 6-dimension scoring rules. |
 | 📄 [`docs/tech_stack.md`](docs/tech_stack.md) | **Tech Stack Rationale:** React 19 + Vite 7 + TypeScript + Zustand + CSS Modules. |
 | 📄 [`docs/design.md`](docs/design.md) | **Design System:** KNOMI warm luxury tokens (`#150C0C`, `#D39858`), 8 personality color palettes. |
