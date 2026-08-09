@@ -12,7 +12,9 @@ export type GameMode =
   | 'kakegurui'
   | 'split-steal'
   | 'mind-reader'
-  | 'traitor';
+  | 'traitor'
+  | 'mood-menus'
+  | 'food-resume';
 
 export type GameStep = 'landing' | 'browsing' | 'playing' | 'analyzing' | 'revealed';
 

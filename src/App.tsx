@@ -14,6 +14,8 @@ import { KakeguruiFeastPage } from './features/kakegurui/KakeguruiFeastPage';
 import { SplitOrStealPage } from './features/split-steal/SplitOrStealPage';
 import { MindReaderPage } from './features/mind-reader/MindReaderPage';
 import { TraitorPage } from './features/traitor/TraitorPage';
+import { MoodMenusPage } from './features/mood-menus/MoodMenusPage';
+import { FoodResumePage } from './features/food-resume/FoodResumePage';
 import { SoloResultPage } from './features/solo/SoloResultPage';
 import { ThisOrThatPage } from './features/this-or-that/ThisOrThatPage';
 import { RoastResultPage } from './features/roast/RoastResultPage';
@@ -81,7 +83,7 @@ export const App: React.FC = () => {
           </motion.div>
         )}
 
-        {/* Rapid Choice & Psychological High-Stakes Modes */}
+        {/* Phase 3 & 4 Choice & Retention Engine Modes */}
         {step === 'playing' && activeMode === 'this-or-that' && (
           <motion.div key="this-or-that" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <ThisOrThatPage />
@@ -121,6 +123,18 @@ export const App: React.FC = () => {
         {step === 'playing' && activeMode === 'traitor' && (
           <motion.div key="traitor" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
             <TraitorPage />
+          </motion.div>
+        )}
+
+        {step === 'playing' && activeMode === 'mood-menus' && (
+          <motion.div key="mood-menus" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <MoodMenusPage />
+          </motion.div>
+        )}
+
+        {step === 'playing' && activeMode === 'food-resume' && (
+          <motion.div key="food-resume" style={{ width: '100%' }} initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} exit={{ opacity: 0, x: -20 }}>
+            <FoodResumePage />
           </motion.div>
         )}
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Sparkles, Users, ArrowRight, Heart, Skull, Zap, Flag, UserCheck, Theater, Coins, Handshake, Eye, UserX } from 'lucide-react';
+import { Sparkles, Users, ArrowRight, Heart, Skull, Zap, Flag, UserCheck, Theater, Coins, Handshake, Eye, UserX, Moon, Award } from 'lucide-react';
 import { useGameStore } from '../../stores/useGameStore';
 import { useSelectionStore } from '../../stores/useSelectionStore';
 import { useResultStore } from '../../stores/useResultStore';
@@ -22,7 +22,9 @@ export const LandingPage: React.FC = () => {
       mode === 'kakegurui' ||
       mode === 'split-steal' ||
       mode === 'mind-reader' ||
-      mode === 'traitor'
+      mode === 'traitor' ||
+      mode === 'mood-menus' ||
+      mode === 'food-resume'
     ) {
       setStep('playing');
     } else {
@@ -84,7 +86,7 @@ export const LandingPage: React.FC = () => {
         </p>
       </motion.div>
 
-      {/* Game Mode Entry Cards (Phase 1, Phase 2, and Phase 3) */}
+      {/* All 16 Game Mode Cards Across Phases 1 to 4 */}
       <div style={{ width: '100%', display: 'flex', flexDirection: 'column', gap: '12px', marginBottom: '24px' }}>
         
         {/* Mode 1: Solo */}
@@ -101,8 +103,36 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
+        {/* Phase 4 Retention Engine Modes */}
+        {/* Mode 15: Themed Mood Menus */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('mood-menus')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(167, 139, 250, 0.12)', border: '1px solid rgba(167, 139, 250, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Moon size={22} color="#A78BFA" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: '#F3E8FF' }}>🌙 Themed Mood Menus</h3>
+                <p style={{ fontSize: '12px', color: 'rgba(243, 232, 255, 0.7)' }}>Monsoon, 2 AM Craving, Broke Student limit.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="#A78BFA" />
+          </div>
+        </motion.div>
+
+        {/* Mode 16: The Food Resume */}
+        <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('food-resume')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(211, 152, 88, 0.15)', border: '1px solid rgba(211, 152, 88, 0.35)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+              <Award size={22} color="var(--knomi-whiskey-sour)" />
+              <div>
+                <h3 style={{ fontSize: '16px', color: 'var(--knomi-text-primary)' }}>🏆 The Food Resume</h3>
+                <p style={{ fontSize: '12px', color: 'var(--knomi-text-secondary)' }}>knomi.in/me/username vanity bio profile link.</p>
+              </div>
+            </div>
+            <ArrowRight size={18} color="var(--knomi-whiskey-sour)" />
+          </div>
+        </motion.div>
+
         {/* Phase 3 Modes */}
-        {/* Mode 9: The Liar's Table */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('liar-table')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(239, 68, 68, 0.08)', border: '1px solid rgba(239, 68, 68, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -116,7 +146,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 10: Food Russian Roulette */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('russian-roulette')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(220, 38, 38, 0.12)', border: '1px solid rgba(220, 38, 38, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -130,7 +159,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 11: Kakegurui Feast */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('kakegurui')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(212, 160, 23, 0.12)', border: '1px solid rgba(212, 160, 23, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -144,7 +172,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 12: Split or Steal */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('split-steal')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(234, 179, 8, 0.08)', border: '1px solid rgba(234, 179, 8, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -158,7 +185,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 13: Mind-Reader Duel */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('mind-reader')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(147, 51, 234, 0.08)', border: '1px solid rgba(147, 51, 234, 0.25)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
@@ -172,7 +198,6 @@ export const LandingPage: React.FC = () => {
           </div>
         </motion.div>
 
-        {/* Mode 14: The Traitor */}
         <motion.div whileTap={{ scale: 0.98 }} onClick={() => handleStartMode('traitor')} style={{ width: '100%', padding: '16px 18px', borderRadius: 'var(--radius-xl)', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.3)', boxShadow: 'var(--shadow-card)', cursor: 'pointer' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
