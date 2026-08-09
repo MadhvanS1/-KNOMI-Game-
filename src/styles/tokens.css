@@ -1,0 +1,57 @@
+:root {
+  /* KNOMI Base Palette */
+  --knomi-champagne: #EACEAA;
+  --knomi-whiskey-sour: #D39858;
+  --knomi-honey-garlic: #85431E;
+  --knomi-burnt-coffee: #34150F;
+  --knomi-balsamico: #150C0C;
+
+  /* Dark Theme Hierarchy */
+  --knomi-bg-base: #150C0C;
+  --knomi-bg-elevated: #1B100F;
+  --knomi-surface-card: #241613;
+  --knomi-surface-hover: #2D1A15;
+  --knomi-surface-selected: #3A1F18;
+  --knomi-surface-pressed: #34150F;
+
+  /* Typography Colors */
+  --knomi-text-primary: #F6EFE8;
+  --knomi-text-secondary: rgba(246, 239, 232, 0.72);
+  --knomi-text-muted: rgba(246, 239, 232, 0.45);
+  --knomi-text-disabled: rgba(246, 239, 232, 0.28);
+  --knomi-text-accent: #D39858;
+
+  /* Borders */
+  --knomi-border-default: rgba(234, 206, 170, 0.08);
+  --knomi-border-strong: rgba(234, 206, 170, 0.16);
+  --knomi-border-focus: #D39858;
+  --knomi-border-selected: #D39858;
+
+  /* Spacing System (4px Base Grid) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Border Radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-card: 0 6px 18px rgba(0, 0, 0, 0.28);
+  --shadow-elevated: 0 12px 32px rgba(0, 0, 0, 0.4);
+  --shadow-glow: 0 0 24px rgba(211, 152, 88, 0.12);
+  --shadow-selected: 0 0 0 2px #D39858, 0 6px 18px rgba(211, 152, 88, 0.25);
+
+  /* Fonts */
+  --font-family-display: 'Space Grotesk', system-ui, -apple-system, sans-serif;
+  --font-family-body: 'Inter', system-ui, -apple-system, sans-serif;
+}

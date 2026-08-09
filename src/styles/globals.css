@@ -1,0 +1,70 @@
+@import './tokens.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  background-color: var(--knomi-bg-base);
+  color: var(--knomi-text-primary);
+  font-family: var(--font-family-body);
+  overflow-x: hidden;
+  overscroll-behavior: none;
+}
+
+#root {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: var(--knomi-bg-base);
+}
+
+/* Typography Helpers */
+h1, h2, h3, h4 {
+  font-family: var(--font-family-display);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+button {
+  font-family: var(--font-family-body);
+  border: none;
+  background: none;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Custom Scrollbar for Menu */
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--knomi-bg-base);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--knomi-border-strong);
+  border-radius: 4px;
+}
+
+/* Responsive Viewport Frame */
+.app-container {
+  width: 100%;
+  max-width: 440px;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--knomi-bg-base);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
+  padding-bottom: env(safe-area-inset-bottom);
+}
