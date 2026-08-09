@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import type { TargetAndTransition } from 'framer-motion';
 import { useDrag } from '@use-gesture/react';
@@ -10,7 +10,7 @@ import { useResultStore } from '../../stores/useResultStore';
 import { calculateSoloScore } from '../../engine/scoringEngine';
 import { generateRoastPayload } from '../../engine/roastGenerator';
 import { PlateBar } from './PlateBar';
-import { Plus, Check, ChevronUp, ChevronDown } from 'lucide-react';
+import { Plus, Check } from 'lucide-react';
 import themeStyles from '../../styles/guest-theme.module.css';
 import layerStyles from '../../styles/guest-layers.module.css';
 
@@ -28,6 +28,9 @@ export const OfficialGuestMenuContainer: React.FC = () => {
   const [navMode, setNavMode] = useState(false);
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 });
   const [isDragging, setIsDragging] = useState(false);
+
+  const touchStartY = useRef<number | null>(null);
+  const wheelLock = useRef(false);
 
   const { selectedDishIds, toggleDish, getSelectedDishes, roastSeverity } = useSelectionStore();
   const { setStep, activeMode } = useGameStore();
@@ -55,14 +58,52 @@ export const OfficialGuestMenuContainer: React.FC = () => {
     }
   };
 
+  // Direct Touch Swipe Engine (iOS & Android Native Touch Events)
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartY.current = e.touches[0].clientY;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (touchStartY.current === null) return;
+    const deltaY = e.changedTouches[0].clientY - touchStartY.current;
+    
+    // Swipe UP (deltaY < -30) -> Next Dish
+    if (deltaY < -30) {
+      handleNextDish();
+    }
+    // Swipe DOWN (deltaY > 30) -> Previous Dish
+    else if (deltaY > 30) {
+      handlePrevDish();
+    }
+
+    touchStartY.current = null;
+  };
+
+  // Trackpad / Mouse Wheel Scroll Engine
+  const handleWheel = (e: React.WheelEvent) => {
+    if (wheelLock.current) return;
+    wheelLock.current = true;
+
+    if (e.deltaY > 20) {
+      handleNextDish();
+    } else if (e.deltaY < -20) {
+      handlePrevDish();
+    }
+
+    setTimeout(() => {
+      wheelLock.current = false;
+    }, 350);
+  };
+
+  // Physical Drag Engine (@use-gesture/react)
   const bind = useDrag(({ active, movement: [mx, my], swipe: [, swipeY] }) => {
     setIsDragging(active);
     setDragOffset({ x: mx, y: my });
 
     if (!active) {
-      if (swipeY === -1 || my < -80) {
+      if (swipeY === -1 || my < -40) {
         handleNextDish();
-      } else if (swipeY === 1 || my > 80) {
+      } else if (swipeY === 1 || my > 40) {
         handlePrevDish();
       }
       setDragOffset({ x: 0, y: 0 });
@@ -109,8 +150,11 @@ export const OfficialGuestMenuContainer: React.FC = () => {
   return (
     <div
       {...bind()}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={handleTouchEnd}
+      onWheel={handleWheel}
       className={themeStyles.appContainer}
-      style={{ touchAction: 'none' }}
+      style={{ touchAction: 'none', cursor: 'grab' }}
     >
       {/* LAYER 1: Canvas Base */}
       <div
@@ -138,7 +182,7 @@ export const OfficialGuestMenuContainer: React.FC = () => {
         {/* Header Overlay */}
         <div className={themeStyles.header}>
           <h2 className={themeStyles.restaurantName}>KNOMI</h2>
-          <p className={themeStyles.restaurantTagline}>BUON APPETITO!</p>
+          <p className={themeStyles.restaurantTagline}>SWIPE UP / DOWN TO BROWSE</p>
         </div>
 
         {/* Category Switcher Bar */}
@@ -219,7 +263,10 @@ export const OfficialGuestMenuContainer: React.FC = () => {
                   <span className={themeStyles.dishPrice}>₹{currentDish.price}</span>
                   <button
                     className={themeStyles.addButton}
-                    onClick={() => toggleDish(currentDish.id)}
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleDish(currentDish.id);
+                    }}
                     style={{
                       backgroundColor: isSelected ? 'var(--knomi-whiskey-sour)' : 'transparent',
                       color: isSelected ? '#150C0C' : 'var(--knomi-whiskey-sour)',
@@ -239,56 +286,6 @@ export const OfficialGuestMenuContainer: React.FC = () => {
           <div className={themeStyles.categoryBottomBadge} style={{ backgroundColor: 'var(--knomi-whiskey-sour)', color: '#150C0C' }}>
             {activeCategory} • {currentIndex + 1}/{categoryDishes.length}
           </div>
-        </div>
-
-        {/* Up/Down Swipe Indicators */}
-        <div style={{
-          position: 'absolute',
-          right: '16px',
-          top: '40%',
-          transform: 'translateY(-50%)',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: '12px',
-          zIndex: 90
-        }}>
-          <button
-            onClick={handlePrevDish}
-            disabled={currentIndex === 0}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '20px',
-              backgroundColor: 'rgba(0,0,0,0.6)',
-              color: currentIndex === 0 ? 'rgba(255,255,255,0.2)' : '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid rgba(255,255,255,0.1)',
-              cursor: 'pointer'
-            }}
-          >
-            <ChevronUp size={22} />
-          </button>
-
-          <button
-            onClick={handleNextDish}
-            disabled={currentIndex === categoryDishes.length - 1}
-            style={{
-              width: '40px',
-              height: '40px',
-              borderRadius: '20px',
-              backgroundColor: 'rgba(0,0,0,0.6)',
-              color: currentIndex === categoryDishes.length - 1 ? 'rgba(255,255,255,0.2)' : '#ffffff',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              border: '1px solid rgba(255,255,255,0.1)',
-              cursor: 'pointer'
-            }}
-          >
-            <ChevronDown size={22} />
-          </button>
         </div>
 
         {/* Nav Mode Overlay Screen */}
