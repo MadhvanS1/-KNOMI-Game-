@@ -35,7 +35,7 @@ Instead of pushing software onto restaurants via sales reps, **KNOMI creates con
 | **"I love food debates & hot takes"** | Sparks public arguments about food preferences | *This or That* Dilemmas (Biryani vs. Butter Chicken) |
 | **"I judge bad restaurant service"** | Validates their pet peeves about dining experiences | *Red Flags / Green Flags* Mode |
 | **"I love self-awareness & humor"** | Delivers funny, hyper-accurate self-deprecating callouts | *The Roast Engine* (Mild to Savage) |
-| **"I crave competition & mystery"** | Tests trust, reading minds, and outsmarting friends | *Psychological Modes* (Liar's Table, Split or Steal) |
+| **"I crave competition & mystery"** | Tests trust, reading minds, and outsmarting friends | *Psychological Modes* (Liar's Table, Split or Steal, Traitor) |
 
 ---
 
@@ -55,69 +55,90 @@ Instead of pushing software onto restaurants via sales reps, **KNOMI creates con
 
 ---
 
-# SECTION 4: COMPLETE GAME MODES ARCHITECTURE (ALL 14 MODES)
+# SECTION 4: ALL 16 GAME MODES ARCHITECTURE
 
-## 4.1 PHASE 1: CONSTELLATION FEST LAUNCH MODES (Aug 27)
+---
+
+## 4.1 PHASE 1: LAUNCH & CORE MODES (5 MODES)
 
 ### 🧠 Mode 1: Solo — "Read My Food Soul"
 - **Flow:** Browse 30 dishes across 4 categories → 10s Analysis Animation → Personality Reveal → Share.
 - **8 Archetypes:** Comfort Loyalist 🍛, Menu Anarchist 🌀, Spice Sovereign 🔥, Social Feeder 🍽️, Silent Connoisseur 🥂, Guilty Hedonist 🧈, Balanced Diplomat ⚖️, Chaos Agent 💀.
 
-### ⚔️ Mode 2: This or That — "Food Dilemmas"
+### 💀 Mode 2: Challenge Mode — "Break KNOMI"
+- **Concept:** Player tries to order the OPPOSITE of their real preference to fool KNOMI's algorithm.
+- **Hidden Tracking:** System tracks scroll hover times, deselect hesitations, and trap dishes.
+- **Outcomes:** "KNOMI Caught You 🫣", "You Broke KNOMI 💀" (Rare holographic badge), or "Too Honest 😭".
+
+### 💕 Mode 3: Couple Mode — "Food Compatibility Test"
+- **Flow:** Person A plays → generates share link → Person B opens link & picks their choices → KNOMI calculates compatibility % + Green/Red Flags + Couple Archetype (*"The Netflix & Naan Couple"*).
+
+### ⚔️ Mode 4: This or That — "Food Dilemmas"
 - **Flow:** 15 rapid-fire binary choices (e.g., Biryani vs Butter Chicken, 2 AM Maggi vs Biryani) → Instant personality snapshot + public percentage comparison (*"67% picked Biryani. You're in the minority"*).
 
-### 🔥 Mode 3: The Roast — "Let KNOMI Destroy You"
-- **Flow:** Generates a savage, Gen Z–style roast based on exact dish picks. Features a Roast Severity Slider (Mild, Medium, Savage).
+### 🔥 Mode 5: The Roast — "Let KNOMI Destroy You"
+- **Flow:** Generates a savage, Gen Z–style roast based on exact dish picks. Features a Roast Severity Slider (Mild Tease, Savage Roast 🌶️🌶️🌶️).
 
 ---
 
-## 4.2 PHASE 2: EXPANSION MODES
-
-### 💀 Mode 4: Challenge Mode — "Break KNOMI"
-- Player tries to order the OPPOSITE of their real preference. 
-- System tracks scroll hover times and hesitation patterns. 
-- *Outcomes:* "KNOMI Caught You 🫣", "You Broke KNOMI 💀" (Rare badge), or "Too Honest 😭".
-
-### 💕 Mode 5: Couple Mode — "Food Compatibility Test"
-- Person A plays → generates link → Person B plays → KNOMI calculates compatibility % + Green/Red Flags + Couple Personality (*"The Netflix & Naan Couple"*).
+## 4.2 PHASE 2: EXPANSION & FAST-PACED MODES (3 MODES)
 
 ### ⚡ Mode 6: Speed Round — "Your Gut Doesn't Lie"
-- 30-second blitz timer. Compares curated choices (Solo Mode) vs. instinct choices (Speed Mode) → *"Who you pretend to be vs. Who you actually are"*.
+- **Concept:** 30-second blitz timer with accelerating heartbeat haptic feedback.
+- **Mechanic:** Compares curated choices (Solo Mode) vs. instinct choices under time pressure → *"Who you pretend to be vs. Who you actually are"*.
 
 ### 🚩 Mode 7: Red Flags / Green Flags — "Your Food Dating Profile"
-- Categorizes ordering habits into Green Flags 🟢 (*"Orders dessert confidently"*) vs. Red Flags 🔴 (*"Orders salad at a biryani place"*).
+- **Concept:** Analyzes ordering habits into a viral dating report card.
+- **Output:** Green Flags 🟢 (*"Orders dessert confidently"*, *"Splits bill evenly"*) vs. Red Flags 🔴 (*"Orders salad at a biryani spot"*, *"Changes order 3 times"*).
+
+### 👥 Mode 8: Roast Squad — "Group Roast Rankings"
+- **Concept:** Group of 3–6 friends scan QR code or open a room link. Everyone picks their orders.
+- **Output:** Group ranking from "Least Basic" to "Most Basic", plus a collective squad personality card.
 
 ---
 
-## 4.3 PHASE 3: PSYCHOLOGICAL HIGH-STAKES MODES (Anime-Inspired)
+## 4.3 PHASE 3: PSYCHOLOGICAL HIGH-STAKES MODES (6 ANIME-INSPIRED MODES)
 
-### 🎭 Mode 8: The Liar's Table (*Liar Game*)
-- 3–6 players receive secret roles (*Saboteur, Glutton, Purist, Innocent Diner*). Players order into a communal pool with 1 bluff dish. 60s interrogation → group votes on who lied.
+### 🎭 Mode 9: The Liar's Table (*Inspired by Liar Game*)
+- **Players:** 3–6 players in a room.
+- **Roles:** Secretly assigned roles (*Saboteur, Glutton, Purist, Innocent Diner*).
+- **Flow:** Players order into a communal pool with 1 hidden bluff dish. 60s interrogation chat → group votes on who lied. Correct vote wins points; successful liar steals points.
 
-### ☠️ Mode 9: Food Russian Roulette (*Squid Game / Kaiji*)
-- 5 rounds, 5-second timer per pick + heartbeat haptics. 1 dish is a "Poison Trap". Failure = instant public roast card. 5-round survival = **"1% SURVIVOR"** Gold Card.
+### ☠️ Mode 10: Food Russian Roulette (*Inspired by Squid Game / Kaiji*)
+- **Players:** Solo or 1v1 battle.
+- **Mechanic:** 5 rounds, 5-second timer per selection + heartbeat haptics. 1 random dish in each round is a "Poison Trap" assigned by KNOMI.
+- **Output:** Selecting the trap triggers instant public roast card. 5-round survival unlocks the **"1% SURVIVOR"** Gold Card.
 
-### 🎰 Mode 10: Kakegurui Feast (*Kakegurui*)
-- 1v1 betting duel where players wager Food Reputation Points (FRP) on predicting their opponent's exact choices and hesitation times.
+### 🎰 Mode 11: Kakegurui Feast (*Inspired by Kakegurui*)
+- **Players:** 1v1 betting duel.
+- **Mechanic:** Wager Food Reputation Points (FRP). Player A predicts Player B's exact choices and hesitation times. High risk, high reward.
 
-### 🐍 Mode 11: Prisoner's Dilemma: Split or Steal (*Tomodachi Game*)
-- 2 friends order together. Secret voting: **[ 🤝 SHARE ]** or **[ 🐍 STEAL ]**.
+### 🐍 Mode 12: Prisoner's Dilemma: Split or Steal (*Inspired by Tomodachi Game*)
+- **Players:** 2 friends order together into a shared pot.
+- **Secret Voting:** **[ 🤝 SHARE ]** or **[ 🐍 STEAL ]**.
   - Both SHARE → **Food Soulmates** Gold Card.
   - One STEALS → Stealer gets **The Snake** badge; Sharer gets **The Victim** roast card.
-  - Both STEAL → **Mutual Destruction** card.
+  - Both STEAL → **Mutual Destruction** card (both lose points).
 
-### 👁️ Mode 12: Mind-Reader Duel (*Death Note*)
-- Target orders. Predictor sees ONLY behavioral clues (speed, hover times, spice index) and must deduct the exact order.
+### 👁️ Mode 13: Mind-Reader Duel (*Inspired by Death Note*)
+- **Players:** 2 players.
+- **Mechanic:** Target orders privately. Predictor sees ONLY anonymized behavioral metrics (scroll speed, hover duration, category time, spice index) and must deduce the exact dish ordered.
+
+### 🕵️ Mode 14: The Traitor (*Inspired by Among Us / The Traitors*)
+- **Players:** 4–8 players.
+- **Mechanic:** 1 player is designated "The Saboteur". The Saboteur tries to subtly alter the group's overall spice/comfort average without getting caught.
 
 ---
 
-## 4.4 RETENTION ENGINE MODES
+## 4.4 PHASE 4: RETENTION ENGINE MODES (2 MODES)
 
-### 🌙 Mode 13: Themed Mood Menus
-- Contextual menu drops: *Monsoon Comfort Menu, 2 AM Craving Menu (unlocked 11 PM–4 AM), Broke Student Menu (₹200 limit), Shaadi Buffet Menu, First Date Menu*.
+### 🌙 Mode 15: Themed Mood Menus
+- **Concept:** Contextual limited-time menu drops.
+- **Examples:** *Monsoon Comfort Menu, 2 AM Craving Menu (unlocked 11 PM–4 AM only), Broke Student Menu (₹200 budget limit), Shaadi Buffet Menu, First Date Menu*.
 
-### 🏆 Mode 14: The Food Resume (`knomi.in/me/username`)
-- Aggregates stats, badges, and compatibility scores across all modes into a permanent bio link profile.
+### 🏆 Mode 16: The Food Resume (`knomi.in/me/username`)
+- **Concept:** Permanent vanity profile link for Instagram bio.
+- **Contents:** Aggregates stats, unlocked holographic badges, win/loss records across psychological modes, and food compatibility scores.
 
 ---
 
